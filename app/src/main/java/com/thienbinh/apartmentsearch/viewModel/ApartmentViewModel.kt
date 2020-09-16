@@ -7,4 +7,8 @@ class ApartmentViewModel : ViewModel() {
   val isLoading = MutableLiveData<Boolean>().apply {
     value = true
   }
+
+  fun toggleStateLoading(){
+    isLoading.value = !isLoading.value!!
+  }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+  <data>
+    <variable
+      name="splashActivityViewModel"
+      type="com.thienbinh.apartmentsearch.viewModel.SplashActivityViewModel" />
+  </data>
+
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+      android:layout_width="@dimen/splash_activity_logo_size"
+      android:layout_height="@dimen/splash_activity_logo_size"
+      android:layout_centerInParent="true"
+      android:scaleType="fitCenter"
+      android:src="@mipmap/ic_apartment_lauch_round" />
+
+    <TextView
+      android:id="@+id/tvCaption"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginBottom="@dimen/dimen_48"
+      android:text="@{splashActivityViewModel.titleTask}"
+      android:textAlignment="center" />
+
+    <ProgressBar
+      android:layout_width="@dimen/dimen_progress_bar_size_xs"
+      android:layout_height="@dimen/dimen_progress_bar_size_xs"
+      android:layout_above="@+id/tvCaption"
+      android:layout_centerHorizontal="true"
+      android:layout_marginBottom="@dimen/dimen_8"
+      android:indeterminateTint="@color/colorPrimaryDark" />
+  </RelativeLayout>
+</layout>

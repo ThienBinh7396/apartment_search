@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="dimen_progress_bar_size_default">28dp</dimen>
+  <dimen name="dimen_progress_bar_size_sm">24dp</dimen>
+  <dimen name="dimen_progress_bar_size_xs">20dp</dimen>
+
+  <dimen name="splash_activity_logo_size">76dp</dimen>
+
+  <dimen name="dimen_8">8dp</dimen>
+  <dimen name="dimen_16">16dp</dimen>
+  <dimen name="dimen_24">24dp</dimen>
+  <dimen name="dimen_32">32dp</dimen>
+  <dimen name="dimen_48">48dp</dimen>
+</resources>

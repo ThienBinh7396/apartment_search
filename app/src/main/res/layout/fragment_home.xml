@@ -13,8 +13,18 @@
     android:layout_height="match_parent">
 
     <TextView
+      android:id="@+id/tvTest"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
       android:text="@{safeUnbox(apartmentViewModel.isLoading) ? `Is Loading` : `Finished`}" />
+
+    <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/tvTest"
+      android:onClick="@{() -> apartmentViewModel.toggleStateLoading()}"
+      android:text="Change" />
+
   </RelativeLayout>
 </layout>

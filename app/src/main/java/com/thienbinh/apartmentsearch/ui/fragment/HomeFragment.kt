@@ -1,12 +1,11 @@
 package com.thienbinh.apartmentsearch.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.thienbinh.apartmentsearch.R
 import com.thienbinh.apartmentsearch.databinding.FragmentHomeBinding
 import com.thienbinh.apartmentsearch.viewModel.ApartmentViewModel
 
@@ -20,6 +19,9 @@ class HomeFragment : Fragment() {
 
     mFragmentHomeBinding = FragmentHomeBinding.inflate(inflater, null, false).apply{
       apartmentViewModel = ViewModelProvider(this@HomeFragment).get(ApartmentViewModel::class.java)
+
+      lifecycleOwner = viewLifecycleOwner
+
     }
 
     return mFragmentHomeBinding.root
