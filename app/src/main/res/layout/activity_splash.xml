@@ -25,6 +25,7 @@
       android:layout_alignParentBottom="true"
       android:layout_centerHorizontal="true"
       android:layout_marginBottom="@dimen/dimen_48"
+      android:textColor="@color/colorTextActive"
       android:text="@{splashActivityViewModel.titleTask}"
       android:textAlignment="center" />
 
