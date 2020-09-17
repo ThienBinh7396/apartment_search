@@ -42,3 +42,8 @@ data class Apartment(
   @ColumnInfo(name = "isLiked")
   val isLiked: Boolean = false
 ) : Serializable
+
+val checkApartmentAreTheSame =
+  { elementOne: Apartment, elementTwo: Apartment ->
+    elementOne.id == elementTwo.id && elementOne.title == elementTwo.title && elementOne.isLiked == elementTwo.isLiked
+  }

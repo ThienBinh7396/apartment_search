@@ -34,6 +34,6 @@
       android:layout_above="@+id/tvCaption"
       android:layout_centerHorizontal="true"
       android:layout_marginBottom="@dimen/dimen_8"
-      android:indeterminateTint="@color/colorPrimaryDark" />
+      android:indeterminateTint="@color/colorTextActive" />
   </RelativeLayout>
 </layout>

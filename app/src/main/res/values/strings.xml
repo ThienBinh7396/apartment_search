@@ -2,4 +2,7 @@
   <string name="app_name">Apartment Search</string>
   <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="loading_database">Loading database...</string>
+  <string name="per_night">per night</string>
+  <string name="fillter">Fillter</string>
+  <string name="filter">Filter</string>
 </resources>
