@@ -17,12 +17,13 @@ class ApartmentAdapter : RecyclerView.Adapter<ApartmentAdapter.ApartmentViewHold
   class ApartmentViewHolder(private var binding: ApartmentBlockLayoutBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bindingData(data: Apartment) {
+    fun bindingData(data: Apartment, isLastItem: Boolean = false) {
       if (binding.apartmentViewModel == null) {
         binding.apartmentViewModel = ApartmentViewModel(data)
       } else {
         (binding.apartmentViewModel as ApartmentViewModel).updateApartment(data)
       }
+      binding.isLastItem = isLastItem
     }
   }
 
@@ -37,7 +38,7 @@ class ApartmentAdapter : RecyclerView.Adapter<ApartmentAdapter.ApartmentViewHold
     )
 
   override fun onBindViewHolder(holder: ApartmentViewHolder, position: Int) {
-    holder.bindingData(apartments[position])
+    holder.bindingData(apartments[position], position == apartments.size - 1)
   }
 
   override fun getItemCount(): Int = apartments.size

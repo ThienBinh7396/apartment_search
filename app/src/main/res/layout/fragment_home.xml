@@ -108,16 +108,13 @@
 
       <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dimen_filter_widget_height">
 
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="vertical">
-
-          <Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_4" />
 
           <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -130,24 +127,49 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_filter_widget_height"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/dimen_apartment_social_container_width">
+        android:layout_marginStart="@dimen/dimen_apartment_social_container_width"
+        android:layout_marginEnd="@dimen/dimen_24"
+        android:layout_marginBottom="@dimen/dimen_24"
+        android:background="@drawable/widget_button_filter_background">
 
         <TextView
           android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:text="result found" />
+          android:layout_height="wrap_content"
+          android:layout_centerVertical="true"
+          android:layout_marginStart="@dimen/dimen_36"
+          android:fontFamily="@font/lato_light"
+          android:textSize="@dimen/font_md"
+          android:textColor="#717E9D"
+          app:bindResultFilter="@{0}" />
 
-        <Button
+        <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="@dimen/dimen_filter_widget_height"
           android:layout_alignParentEnd="true"
           android:background="@drawable/button_active_rounded_ripple_background"
-          android:fontFamily="@font/lato_bold"
-          android:text="@string/filter"
-          android:textAllCaps="false"
-          android:textColor="@color/colorTextWhite"
-          android:textSize="@dimen/font_md"
-          android:textStyle="bold" />
+          android:clickable="true"
+          android:focusable="true"
+          android:paddingHorizontal="@dimen/dimen_36">
+
+          <ImageView
+            android:layout_width="@dimen/dimen_16"
+            android:layout_height="@dimen/dimen_16"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/dimen_10"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_feather_sliders" />
+
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/filter"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="@dimen/font_sm"
+            android:textStyle="bold" />
+        </LinearLayout>
+
       </RelativeLayout>
     </RelativeLayout>
   </LinearLayout>
