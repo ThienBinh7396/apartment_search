@@ -63,7 +63,6 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
     super.onStart()
 
     mainAction()
-//    goToMainActivity()
   }
 
   private fun mainAction() {
@@ -89,7 +88,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
         startActivity(intent)
 
         finish()
-      }, 1000)
+      }, 6000)
   }
 
   private val checkFirstInitializeDatabase: () -> Boolean = {

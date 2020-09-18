@@ -9,14 +9,16 @@
 
   <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#0074bd">
 
     <ImageView
-      android:layout_width="@dimen/splash_activity_logo_size"
-      android:layout_height="@dimen/splash_activity_logo_size"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:layout_centerInParent="true"
       android:scaleType="fitCenter"
-      android:src="@mipmap/ic_apartment_lauch_round" />
+      android:src="@drawable/ic_logo_slogan"
+      android:layout_marginHorizontal="@dimen/dimen_42"/>
 
     <TextView
       android:id="@+id/tvCaption"
@@ -25,7 +27,7 @@
       android:layout_alignParentBottom="true"
       android:layout_centerHorizontal="true"
       android:layout_marginBottom="@dimen/dimen_48"
-      android:textColor="@color/colorTextActive"
+      android:textColor="@color/colorTextWhite"
       android:text="@{splashActivityViewModel.titleTask}"
       android:textAlignment="center" />
 
@@ -35,6 +37,7 @@
       android:layout_above="@+id/tvCaption"
       android:layout_centerHorizontal="true"
       android:layout_marginBottom="@dimen/dimen_8"
-      android:indeterminateTint="@color/colorTextActive" />
+      android:indeterminate="true"
+      android:indeterminateDrawable="@drawable/progress_circular_indeterminate_background" />
   </RelativeLayout>
 </layout>
