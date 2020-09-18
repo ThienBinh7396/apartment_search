@@ -4,6 +4,7 @@
   <color name="colorAccent">#DA0303</color>
 
   <color name="colorTextActive">#3165ec</color>
+  <color name="colorTextActiveLighten">#6e93f1</color>
   <color name="colorTextActiveWidthAlpha">#A63165EC</color>
   <color name="colorText">#626b80</color>
   <color name="colorTextBold">#626b80</color>

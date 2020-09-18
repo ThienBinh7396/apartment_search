@@ -37,6 +37,7 @@
   <dimen name="dimen_apartment_content_height">192dp</dimen>
 
   <dimen name="dimen_filter_widget_height">52dp</dimen>
+  <dimen name="dimen_filter_widget_height_sm">46dp</dimen>
   <dimen name="dimen_divide_bar_dialog_width">100dp</dimen>
   <dimen name="dimen_18">18dp</dimen>
 

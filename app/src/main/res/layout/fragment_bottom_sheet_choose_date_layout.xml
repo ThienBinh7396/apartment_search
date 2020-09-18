@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
 
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@drawable/dialog_fragment_background"
+    android:orientation="vertical"
     android:paddingVertical="@dimen/dimen_16">
 
     <View
@@ -66,16 +67,15 @@
       <FrameLayout
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_weight="3"
-        android:layout_marginTop="@dimen/dimen_8">
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_weight="3">
 
         <View
           android:layout_width="match_parent"
-          android:layout_marginHorizontal="@dimen/dimen_4"
           android:layout_height="4dp"
+          android:layout_marginHorizontal="@dimen/dimen_4"
           android:background="@drawable/divide_dashed_single_border_background" />
       </FrameLayout>
-
 
       <LinearLayout
         android:layout_width="0dp"
@@ -114,6 +114,64 @@
           </TableRow>
         </TableLayout>
       </LinearLayout>
+    </LinearLayout>
+
+    <com.ptrstovka.calendarview2.CalendarView2
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/dimen_32"
+      android:layout_marginTop="@dimen/dimen_12"
+      android:layout_marginBottom="@dimen/dimen_40"
+      app:bindCustomArrow2="@{true}"
+      app:bindMaxDateNow2="@{true}"
+      app:bindMinDateNow2="@{true}"
+      app:mcv_circlePadding="5dp"
+      app:mcv_selectionColor="@color/colorTextActive"
+      app:mcv_showOtherDates="all" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/dimen_filter_widget_height_sm"
+      android:layout_marginStart="@dimen/dimen_apartment_social_container_width"
+      android:layout_marginEnd="@dimen/dimen_apartment_social_container_width"
+      android:layout_marginBottom="@dimen/dimen_18"
+      android:background="@drawable/widget_button_filter_background"
+      android:elevation="2dp"
+      android:orientation="horizontal"
+      android:weightSum="2">
+
+      <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/dimen_36"
+        android:layout_weight="1"
+        android:fontFamily="@font/lato_light"
+        android:textColor="#717E9D"
+        android:textSize="@dimen/font_md"
+        app:bindDayResult="@{3}" />
+
+      <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_filter_widget_height_sm"
+        android:layout_weight="1"
+        android:background="@drawable/button_active_rounded_ripple_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:fontFamily="@font/lato_bold"
+          android:text="@string/apply"
+          android:textColor="@color/colorTextWhite"
+          android:textSize="@dimen/font_sm"
+          android:textStyle="bold" />
+      </LinearLayout>
+
     </LinearLayout>
   </LinearLayout>
 </layout>

@@ -24,7 +24,7 @@ android {
         }
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
         viewBinding = true
     }
@@ -43,11 +43,14 @@ android {
 repositories {
     google()
     jcenter()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     def lifecycle_version = "2.2.0"
     def room_version = "2.2.5"
+
+    def material_calendar = "2.0.1"
 
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
@@ -96,4 +99,7 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:4.1.0'
 
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'joda-time:joda-time:2.10.6'
+
+    implementation 'com.ptrstovka.calendarview2:calendarview2:2.0-alpha5'
 }
