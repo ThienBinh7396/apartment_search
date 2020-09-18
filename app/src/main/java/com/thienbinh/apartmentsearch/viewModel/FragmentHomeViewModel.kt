@@ -9,8 +9,14 @@ import com.thienbinh.apartmentsearch.store
 import com.thienbinh.apartmentsearch.store.state.ApartmentState
 import com.thienbinh.apartmentsearch.util.Helper
 import org.rekotlin.StoreSubscriber
+import java.util.*
 
-class FragmentHomeViewModel : ViewModel(), StoreSubscriber<ApartmentState> {
+interface IFragmentHomeViewModelEventListener{
+  fun onChooseDateButtonClickListener()
+  fun onChooseGuestButtonClickListener()
+}
+
+class FragmentHomeViewModel(eventListener: IFragmentHomeViewModelEventListener? = null) : ViewModel(), StoreSubscriber<ApartmentState> {
   init {
     store.subscribe(this){
       it.select {
@@ -24,6 +30,10 @@ class FragmentHomeViewModel : ViewModel(), StoreSubscriber<ApartmentState> {
 
   val apartments = MutableLiveData<MutableList<Apartment>>().apply {
     value = store.state.apartmentState.apartments
+  }
+
+  val eventListener = MutableLiveData<IFragmentHomeViewModelEventListener>().apply {
+    value = eventListener
   }
 
   override fun newState(state: ApartmentState) {

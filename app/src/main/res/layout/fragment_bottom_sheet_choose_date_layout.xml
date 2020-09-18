@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_fragment_background"
+    android:paddingVertical="@dimen/dimen_16">
+
+    <View
+      android:layout_width="@dimen/dimen_divide_bar_dialog_width"
+      android:layout_height="@dimen/dimen_4"
+      android:layout_gravity="center"
+      android:layout_marginBottom="@dimen/dimen_16"
+      android:background="@drawable/divide_bar_background" />
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/dimen_24"
+      android:layout_marginTop="@dimen/dimen_6"
+      android:background="@drawable/dialog_choose_date_content_background"
+      android:orientation="horizontal"
+      android:paddingHorizontal="@dimen/dimen_20"
+      android:paddingVertical="@dimen/dimen_14"
+      android:weightSum="11">
+
+      <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:orientation="vertical">
+
+        <TableLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+
+          <TableRow>
+
+            <ImageView
+              android:layout_width="@dimen/dimen_16"
+              android:layout_marginEnd="@dimen/dimen_4"
+              android:src="@drawable/ic_feather_log_in" />
+
+            <TextView
+              android:text="@string/check_in"
+              android:textColor="@color/colorTextLighten"
+              android:textSize="@dimen/font_sm" />
+          </TableRow>
+
+          <TableRow>
+
+            <TextView
+              android:layout_column="1"
+              android:fontFamily="@font/lato_bold"
+              android:text="Thu, Mar 28"
+
+              android:textColor="@color/colorTextWhite"
+              android:textSize="@dimen/font_sm"
+              android:textStyle="bold" />
+          </TableRow>
+        </TableLayout>
+      </LinearLayout>
+
+      <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_weight="3"
+        android:layout_marginTop="@dimen/dimen_8">
+
+        <View
+          android:layout_width="match_parent"
+          android:layout_marginHorizontal="@dimen/dimen_4"
+          android:layout_height="4dp"
+          android:background="@drawable/divide_dashed_single_border_background" />
+      </FrameLayout>
+
+
+      <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TableLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content">
+
+          <TableRow>
+
+            <ImageView
+              android:layout_width="@dimen/dimen_16"
+              android:layout_marginEnd="@dimen/dimen_4"
+              android:src="@drawable/ic_feather_log_in" />
+
+            <TextView
+              android:text="@string/check_in"
+              android:textColor="@color/colorTextLighten"
+              android:textSize="@dimen/font_sm" />
+          </TableRow>
+
+          <TableRow>
+
+            <TextView
+              android:layout_column="1"
+              android:fontFamily="@font/lato_bold"
+              android:text="Thu, Mar 28"
+
+              android:textColor="@color/colorTextWhite"
+              android:textSize="@dimen/font_sm"
+              android:textStyle="bold" />
+          </TableRow>
+        </TableLayout>
+      </LinearLayout>
+    </LinearLayout>
+  </LinearLayout>
+</layout>

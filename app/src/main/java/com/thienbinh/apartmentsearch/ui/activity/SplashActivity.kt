@@ -25,6 +25,7 @@ import com.thienbinh.apartmentsearch.sharePreferences.ApplicationSharedPreferenc
 import com.thienbinh.apartmentsearch.sharePreferences.ApplicationSharedPreferenceModel
 import com.thienbinh.apartmentsearch.store
 import com.thienbinh.apartmentsearch.store.action.ApartmentAction
+import com.thienbinh.apartmentsearch.util.FirstInitializeStoreData
 import com.thienbinh.apartmentsearch.viewModel.SplashActivityViewModel
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -88,12 +89,12 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
         startActivity(intent)
 
         finish()
-      }, 6000)
+      }, 1000)
   }
 
   private val checkFirstInitializeDatabase: () -> Boolean = {
     run {
-      mAppDB = AppDB.getInstance(this@SplashActivity)
+      mAppDB = FirstInitializeStoreData.getAppDatabase()
 
       applicationInformation = ApplicationSharedPreference.getApplicationInformation()
 
@@ -117,9 +118,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
   private val loadDataFromDatabase: () -> Boolean = {
     run {
 
-      store.dispatch(ApartmentAction.Apartment_ACTION_UPDATE_APARTMENTS(getApartments().toMutableList()))
-      store.dispatch(ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_AMENITIES(getApartmentAmenitiesData().toMutableList()))
-      store.dispatch(ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_TYPES(getApartmentTypesData().toMutableList()))
+      FirstInitializeStoreData.initializeStoreData()
 
       Log.d("Binh", "Check loadDataFromDatabase")
       return@run true
@@ -163,7 +162,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
   }
 
   private fun initializeApartment() {
-    val apartmentTypes = getApartmentTypesData()
+    val apartmentTypes = FirstInitializeStoreData.getApartmentTypesData()
 
     val apartments = arrayOf(
       Apartment(
@@ -324,12 +323,4 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
       mAppDB.getApartmentDAO().insert(*apartments)
     }
   }
-
-  private fun getApartments() = mAppDB.getApartmentDAO().getApartmentAmenitiesSynchronous()
-
-  private fun getApartmentTypesData() =
-    mAppDB.getApartmentTypeDAO().getApartmentTypeListSynchronous()
-
-  private fun getApartmentAmenitiesData() =
-    mAppDB.getApartmentAmenityDAO().getApartmentAmenitiesSynchronous()
 }

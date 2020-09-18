@@ -6,6 +6,9 @@
 
   <dimen name="splash_activity_logo_size">76dp</dimen>
 
+  <dimen name="dimen_0">0dp</dimen>
+  <dimen name="dimen_2">2dp</dimen>
+  <dimen name="dimen_34">34dp</dimen>
   <dimen name="dimen_4">4dp</dimen>
   <dimen name="dimen_8">8dp</dimen>
   <dimen name="dimen_10">10dp</dimen>
@@ -22,7 +25,7 @@
   <dimen name="dimen_28">28dp</dimen>
   <dimen name="dimen_14">14dp</dimen>
 
-  <dimen name="font_sm">13sp</dimen>
+  <dimen name="font_sm">12sp</dimen>
   <dimen name="font_xs">11sp</dimen>
   <dimen name="font_md">14sp</dimen>
   <dimen name="font_default">16sp</dimen>
@@ -33,7 +36,8 @@
   <dimen name="dimen_apartment_social_container_width">52dp</dimen>
   <dimen name="dimen_apartment_content_height">192dp</dimen>
 
-  <dimen name="dimen_filter_widget_height">45dp</dimen>
-  <dimen name="dimen_0">0dp</dimen>
+  <dimen name="dimen_filter_widget_height">52dp</dimen>
+  <dimen name="dimen_divide_bar_dialog_width">100dp</dimen>
+  <dimen name="dimen_18">18dp</dimen>
 
 </resources>
