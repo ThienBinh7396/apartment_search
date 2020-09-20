@@ -7,7 +7,7 @@
         <item name="fontFamily">@font/lato_black</item>
     </style>
     <style name="DatePickerCustomStyle" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <!-- Customize your theme here. -->
+        <item name="background">@drawable/custom_datepicker_drawable_background</item>
         <item name="android:textColor">@color/custom_datepicker_text_color</item>
         <item name="fontFamily">@font/lato_regular</item>
     </style>

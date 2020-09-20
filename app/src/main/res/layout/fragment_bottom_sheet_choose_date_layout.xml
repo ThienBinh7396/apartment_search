@@ -2,6 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto">
 
+  <data>
+
+    <import type="com.ptrstovka.calendarview2.CalendarView2" />
+
+    <import type="com.thienbinh.apartmentsearch.util.Helper" />
+
+    <variable
+      name="apartmentStateViewModel"
+      type="com.thienbinh.apartmentsearch.viewModel.ApartmentStateViewModel" />
+  </data>
+
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,7 +22,7 @@
 
     <View
       android:layout_width="@dimen/dimen_divide_bar_dialog_width"
-      android:layout_height="@dimen/dimen_4"
+      android:layout_height="@dimen/dimen_6"
       android:layout_gravity="center"
       android:layout_marginBottom="@dimen/dimen_16"
       android:background="@drawable/divide_bar_background" />
@@ -55,8 +66,7 @@
             <TextView
               android:layout_column="1"
               android:fontFamily="@font/lato_bold"
-              android:text="Thu, Mar 28"
-
+              android:text="@{apartmentStateViewModel.startDate}"
               android:textColor="@color/colorTextWhite"
               android:textSize="@dimen/font_sm"
               android:textStyle="bold" />
@@ -106,8 +116,7 @@
             <TextView
               android:layout_column="1"
               android:fontFamily="@font/lato_bold"
-              android:text="Thu, Mar 28"
-
+              android:text="@{apartmentStateViewModel.endDate}"
               android:textColor="@color/colorTextWhite"
               android:textSize="@dimen/font_sm"
               android:textStyle="bold" />
@@ -117,17 +126,27 @@
     </LinearLayout>
 
     <com.ptrstovka.calendarview2.CalendarView2
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginHorizontal="@dimen/dimen_32"
       android:layout_marginTop="@dimen/dimen_12"
       android:layout_marginBottom="@dimen/dimen_40"
-      app:bindCustomArrow2="@{true}"
-      app:bindMaxDateNow2="@{true}"
-      app:bindMinDateNow2="@{true}"
-      app:mcv_circlePadding="5dp"
+      android:tag="@{ false }"
+      app:bindCustomizeCalendarView="@{null}"
+      app:bindMaxDateNow="@{true}"
+      app:bindMinDateNow="@{true}"
+      app:bindSelectionMode="@{CalendarView2.SELECTION_MODE_RANGE}"
+      app:mcv_arrowColor="@color/colorTextActive"
+      app:mcv_circlePadding="6dp"
+      app:mcv_dateTextAppearance="@style/DatePickerCustomStyle"
+      app:mcv_headerTextAppearance="@style/DatePickerCustomHeader"
+      app:mcv_leftArrowMask="@drawable/ic_baseline_keyboard_arrow_left_24"
+      app:mcv_rightArrowMask="@drawable/ic_baseline_keyboard_arrow_right_24"
       app:mcv_selectionColor="@color/colorTextActive"
-      app:mcv_showOtherDates="all" />
+      app:mcv_showOtherDates="all"
+      app:mcv_tileHeight="@dimen/dimen_42"
+      app:mcv_tileSize="@dimen/dimen_28"
+      app:mcv_tileWidth="@dimen/dimen_42" />
 
     <LinearLayout
       android:layout_width="match_parent"

@@ -15,25 +15,15 @@ import com.thienbinh.apartmentsearch.store
 import com.thienbinh.apartmentsearch.store.state.ApartmentState
 import com.thienbinh.apartmentsearch.util.Helper
 import org.rekotlin.StoreSubscriber
-import java.util.*
 
-interface IFragmentHomeViewModelEventListener {
-  fun onChooseDateButtonClickListener()
-  fun onChooseGuestButtonClickListener()
-}
+class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<ApartmentState> {
 
-class FragmentHomeViewModel(eventListener: IFragmentHomeViewModelEventListener? = null) :
-  ViewModel(), Observable, StoreSubscriber<ApartmentState> {
   init {
     store.subscribe(this) {
       it.select {
         it.apartmentState
       }
     }
-  }
-
-  val title = MutableLiveData<String>().apply {
-    value = "Hà Nội"
   }
 
   val apartments = MutableLiveData<MutableList<Apartment>>().apply {
@@ -44,38 +34,33 @@ class FragmentHomeViewModel(eventListener: IFragmentHomeViewModelEventListener? 
     value = store.state.apartmentState.apartmentFilterModel
   }
 
-  val eventListener = MutableLiveData<IFragmentHomeViewModelEventListener>().apply {
-    value = eventListener
-  }
 
   @Bindable
-  fun getTotalGuests(): String {
-    apartmentFilterModel.value?.apply {
-      return "${adultsAmount + childrenAmount + infantsAmount} guests"
-    }
-
-    return "0 guest"
-  }
+  fun getStartDate() = Helper.formatDate(apartmentFilterModel.value?.startDate)
 
   @Bindable
-  fun getRangeDateText(): String {
-    if (apartmentFilterModel.value?.startDate == null || apartmentFilterModel.value?.endDate == null) return "MM dd - dd"
+  fun getEndDate() = Helper.formatDate(apartmentFilterModel.value?.endDate)
 
+  @Bindable
+  fun getAmountGuestFullText(): String {
     apartmentFilterModel.value?.apply {
-      if (startDate!!.month == endDate!!.month) {
-        return "${Helper.monOfYears[startDate!!.month]} ${startDate!!.date} - ${endDate!!.date}"
+      var text = "${adultsAmount} Adults "
 
+      if (childrenAmount > 0) {
+        text += "- ${childrenAmount} Children "
       }
 
-      return "${Helper.monOfYears[startDate!!.month]} ${startDate!!.date} - ${Helper.monOfYears[endDate!!.month]} ${endDate!!.date}"
+      if (infantsAmount > 0) {
+        text += "- ${infantsAmount} Infants "
+      }
 
+      return text
     }
 
     return ""
   }
 
   override fun newState(state: ApartmentState) {
-//    Log.d("Binh", "Apartment: ${apartments?.value}")
 
     if (apartments?.value != null && !Helper.checkListAreTheSame(
         apartments.value!!,
@@ -86,17 +71,17 @@ class FragmentHomeViewModel(eventListener: IFragmentHomeViewModelEventListener? 
       apartments.value = state.apartments
     }
 
-
     if (apartmentFilterModel?.value != null && !checkApartmentFilterModelAreTheSame(
         apartmentFilterModel.value!!, state.apartmentFilterModel
       )
     ) {
 
-      Log.d("Binh", "Update filter")
+      Log.d("Binh", "Update filter 123213")
       apartmentFilterModel.value = state.apartmentFilterModel
 
-      callbacks.notifyCallbacks(this, BR.rangeDateText, null)
-      callbacks.notifyCallbacks(this, BR.totalGuests, null)
+      callbacks.notifyCallbacks(this, BR.amountGuestFullText, null)
+      callbacks.notifyCallbacks(this, BR.startDate, null)
+      callbacks.notifyCallbacks(this, BR.endDate, null)
     }
   }
 

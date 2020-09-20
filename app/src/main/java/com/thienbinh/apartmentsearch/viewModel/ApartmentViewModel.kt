@@ -14,12 +14,4 @@ class ApartmentViewModel(apartment: Apartment) : ViewModel() {
   fun updateApartment(apartment: Apartment) {
     this.apartment.value = apartment
   }
-
-  val isLoading = MutableLiveData<Boolean>().apply {
-    value = true
-  }
-
-  fun toggleStateLoading() {
-    isLoading.value = !isLoading.value!!
-  }
 }

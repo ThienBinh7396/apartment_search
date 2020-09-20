@@ -29,8 +29,12 @@
   <dimen name="font_xs">11sp</dimen>
   <dimen name="font_md">14sp</dimen>
   <dimen name="font_default">16sp</dimen>
+  <dimen name="font_lg">18sp</dimen>
+  <dimen name="font_19">19sp</dimen>
+  <dimen name="font_xl">20sp</dimen>
 
   <dimen name="dimen_icon_button_width">52dp</dimen>
+  <dimen name="dimen_icon_button_width_sm">42dp</dimen>
 
   <dimen name="dimen_icon_social_information">21dp</dimen>
   <dimen name="dimen_apartment_social_container_width">52dp</dimen>
@@ -40,5 +44,7 @@
   <dimen name="dimen_filter_widget_height_sm">46dp</dimen>
   <dimen name="dimen_divide_bar_dialog_width">100dp</dimen>
   <dimen name="dimen_18">18dp</dimen>
+  
+  <dimen name="dimen_input_number_container_bottom_sheet">112dp</dimen>
 
 </resources>

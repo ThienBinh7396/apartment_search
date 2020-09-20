@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+
+    <variable
+      name="apartmentStateViewModel"
+      type="com.thienbinh.apartmentsearch.viewModel.ApartmentStateViewModel" />
+  </data>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_fragment_background"
+    android:orientation="vertical"
+    android:paddingVertical="@dimen/dimen_16">
+
+    <View
+      android:layout_width="@dimen/dimen_divide_bar_dialog_width"
+      android:layout_height="@dimen/dimen_6"
+      android:layout_gravity="center"
+      android:layout_marginBottom="@dimen/dimen_16"
+      android:background="@drawable/divide_bar_background" />
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/dimen_24"
+      android:layout_marginTop="@dimen/dimen_6"
+      android:background="@drawable/dialog_choose_date_content_background"
+      android:orientation="horizontal"
+      android:paddingVertical="@dimen/dimen_14">
+
+      <TableLayout
+        android:id="@+id/tlTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <TableRow>
+
+          <ImageView
+            android:layout_width="@dimen/dimen_20"
+            android:layout_marginEnd="@dimen/dimen_4"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_feather_users" />
+
+          <TextView
+            android:text="@string/total_guests"
+            android:textColor="@color/colorTextLight"
+            android:textSize="@dimen/font_sm" />
+        </TableRow>
+      </TableLayout>
+
+      <TextView
+        android:layout_below="@+id/tlTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:text="@{apartmentStateViewModel.amountGuestFullText}"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="@dimen/font_md"
+        android:textStyle="bold" />
+    </RelativeLayout>
+
+    <TableLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/dimen_icon_button_width_sm"
+      android:layout_marginTop="@dimen/dimen_24"
+      android:layout_marginBottom="@dimen/dimen_40"
+      android:stretchColumns="0">
+
+      <TableRow android:layout_marginTop="@dimen/dimen_8">
+
+        <TextView
+          android:fontFamily="@font/lato_bold"
+          android:text="@string/adults"
+          android:textColor="@color/colorTextDark"
+          android:textSize="@dimen/font_default"
+          android:textStyle="bold" />
+
+        <com.thienbinh.apartmentsearch.ui.customView.WidgetInputNumber
+          android:layout_width="@dimen/dimen_input_number_container_bottom_sheet"
+          app:bindNumberValueToWidgetInput="@{apartmentStateViewModel.apartmentFilterModel.adultsAmount}"
+          app:max="5"
+          app:min="1"
+          app:typeChange="adult" />
+      </TableRow>
+
+      <TableRow android:layout_marginTop="@dimen/dimen_28">
+
+        <LinearLayout android:orientation="vertical">
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/children"
+            android:textColor="@color/colorTextDark"
+            android:textSize="@dimen/font_default"
+            android:textStyle="bold" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_2"
+            android:text="@string/ages_2_12"
+            android:textSize="@dimen/font_sm" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:orientation="horizontal">
+
+          <com.thienbinh.apartmentsearch.ui.customView.WidgetInputNumber
+            android:layout_width="@dimen/dimen_input_number_container_bottom_sheet"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:bindNumberValueToWidgetInput="@{apartmentStateViewModel.apartmentFilterModel.childrenAmount}"
+            app:max="4"
+            app:typeChange="children" />
+        </LinearLayout>
+      </TableRow>
+
+      <TableRow android:layout_marginTop="@dimen/dimen_28">
+
+        <LinearLayout android:orientation="vertical">
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/infants"
+            android:textColor="@color/colorTextDark"
+            android:textSize="@dimen/font_default"
+            android:textStyle="bold" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_2"
+            android:text="@string/under_2"
+            android:textSize="@dimen/font_sm" />
+        </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:orientation="horizontal">
+
+          <com.thienbinh.apartmentsearch.ui.customView.WidgetInputNumber
+            android:layout_width="@dimen/dimen_input_number_container_bottom_sheet"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:bindNumberValueToWidgetInput="@{apartmentStateViewModel.apartmentFilterModel.infantsAmount}"
+            app:max="4"
+            app:typeChange="infant" />
+        </LinearLayout>
+      </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/dimen_filter_widget_height_sm"
+      android:layout_marginStart="@dimen/dimen_apartment_social_container_width"
+      android:layout_marginEnd="@dimen/dimen_apartment_social_container_width"
+      android:layout_marginBottom="@dimen/dimen_18"
+      android:background="@drawable/widget_button_filter_background"
+      android:elevation="2dp"
+      android:orientation="horizontal"
+      android:weightSum="2">
+
+      <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@color/colorTransparent"
+        android:fontFamily="@font/lato_black"
+        android:text="@string/reset"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/colorTextActive"
+        android:textSize="@dimen/font_md"
+        android:textStyle="bold" />
+
+      <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_filter_widget_height_sm"
+        android:layout_weight="1"
+        android:background="@drawable/button_active_rounded_ripple_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:fontFamily="@font/lato_black"
+          android:text="@string/apply"
+          android:textColor="@color/colorTextWhite"
+          android:textSize="@dimen/font_sm"
+          android:textStyle="bold" />
+      </LinearLayout>
+
+    </LinearLayout>
+  </LinearLayout>
+</layout>

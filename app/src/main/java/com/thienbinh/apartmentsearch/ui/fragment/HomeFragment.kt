@@ -13,8 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.thienbinh.apartmentsearch.R
 import com.thienbinh.apartmentsearch.databinding.FragmentBottomSheetChooseDateLayoutBinding
+import com.thienbinh.apartmentsearch.databinding.FragmentBottomSheetChooseGuestLayoutBinding
 import com.thienbinh.apartmentsearch.databinding.FragmentHomeBinding
 import com.thienbinh.apartmentsearch.store
+import com.thienbinh.apartmentsearch.viewModel.ApartmentStateViewModel
 import com.thienbinh.apartmentsearch.viewModel.ApartmentViewModel
 import com.thienbinh.apartmentsearch.viewModel.FragmentHomeViewModel
 import com.thienbinh.apartmentsearch.viewModel.IFragmentHomeViewModelEventListener
@@ -22,7 +24,9 @@ import com.thienbinh.apartmentsearch.viewModel.IFragmentHomeViewModelEventListen
 class HomeFragment : Fragment(), IFragmentHomeViewModelEventListener {
   private lateinit var mFragmentHomeBinding: FragmentHomeBinding
 
-  private lateinit var mChooseDataDialog: BottomSheetDialog
+  private lateinit var mChooseDateDialog: BottomSheetDialog
+
+  private lateinit var mChooseGuestDialog: BottomSheetDialog
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -37,14 +41,34 @@ class HomeFragment : Fragment(), IFragmentHomeViewModelEventListener {
       lifecycleOwner = viewLifecycleOwner
     }
 
-    mChooseDataDialog = BottomSheetDialog(requireContext(), R.style.SheetDialog).apply {
+    mChooseDateDialog = BottomSheetDialog(requireContext(), R.style.SheetDialog).apply {
       setContentView(
         DataBindingUtil.inflate<FragmentBottomSheetChooseDateLayoutBinding>(
           LayoutInflater.from(requireContext()),
           R.layout.fragment_bottom_sheet_choose_date_layout,
           null,
           false
-        ).root
+        ).apply {
+          apartmentStateViewModel = ApartmentStateViewModel()
+
+          lifecycleOwner = this@HomeFragment
+        }.root
+      )
+    }
+
+    mChooseGuestDialog = BottomSheetDialog(requireContext(), R.style.SheetDialog).apply {
+      setContentView(
+        DataBindingUtil.inflate<FragmentBottomSheetChooseGuestLayoutBinding>(
+          LayoutInflater.from(requireContext()),
+          R.layout.fragment_bottom_sheet_choose_guest_layout,
+          null,
+          false
+        ).apply {
+
+          apartmentStateViewModel = ApartmentStateViewModel()
+
+          lifecycleOwner = this@HomeFragment
+        }.root
       )
     }
 
@@ -62,10 +86,12 @@ class HomeFragment : Fragment(), IFragmentHomeViewModelEventListener {
   override fun onChooseDateButtonClickListener() {
     Log.d("Binh", "Choose date")
 
-    mChooseDataDialog.show()
+    mChooseDateDialog.show()
   }
 
   override fun onChooseGuestButtonClickListener() {
+
+    mChooseGuestDialog.show()
 
   }
 }
