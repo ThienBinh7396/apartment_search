@@ -14,6 +14,8 @@ import com.thienbinh.apartmentsearch.model.checkApartmentFilterModelAreTheSame
 import com.thienbinh.apartmentsearch.store
 import com.thienbinh.apartmentsearch.store.state.ApartmentState
 import com.thienbinh.apartmentsearch.util.Helper
+import org.joda.time.DateTime
+import org.joda.time.Days
 import org.rekotlin.StoreSubscriber
 
 class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<ApartmentState> {
@@ -40,6 +42,17 @@ class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<Apartme
 
   @Bindable
   fun getEndDate() = Helper.formatDate(apartmentFilterModel.value?.endDate)
+
+  @Bindable
+  fun getCountDate(): Int {
+    apartmentFilterModel.value?.apply {
+      if (startDate != null && endDate != null) {
+        return Days.daysBetween(DateTime(startDate), DateTime(endDate)).days + 1
+      }
+    }
+
+    return 0
+  }
 
   @Bindable
   fun getAmountGuestFullText(): String {
@@ -82,6 +95,7 @@ class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<Apartme
       callbacks.notifyCallbacks(this, BR.amountGuestFullText, null)
       callbacks.notifyCallbacks(this, BR.startDate, null)
       callbacks.notifyCallbacks(this, BR.endDate, null)
+      callbacks.notifyCallbacks(this, BR.countDate, null)
     }
   }
 

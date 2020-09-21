@@ -12,9 +12,12 @@ sealed class ApartmentAction : Action {
   class Apartment_ACTION_UPDATE_APARTMENT_AMENITIES(var list: MutableList<ApartmentAmenity>) :
     Action
 
-  class Apartment_ACTION_UPDATE_APARTMENT_FILTER(
+  class Apartment_ACTION_UPDATE_APARTMENT_FILTER_UPDATE_DATE(
     var startDate: Date? = null,
-    var endDate: Date? = null,
+    var endDate: Date? = null
+  ): Action
+
+  class Apartment_ACTION_UPDATE_APARTMENT_FILTER(
     var adults: Int? = null,
     var children: Int? = null,
     var infants: Int? = null,

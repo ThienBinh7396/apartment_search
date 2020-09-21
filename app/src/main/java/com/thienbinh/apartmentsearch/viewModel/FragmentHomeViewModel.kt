@@ -20,6 +20,7 @@ import java.util.*
 interface IFragmentHomeViewModelEventListener {
   fun onChooseDateButtonClickListener()
   fun onChooseGuestButtonClickListener()
+  fun onShowFilterButtonClickListener()
 }
 
 class FragmentHomeViewModel(eventListener: IFragmentHomeViewModelEventListener? = null) :

@@ -3,8 +3,8 @@
   <string name="hello_blank_fragment">Hello blank fragment</string>
   <string name="loading_database">Loading database...</string>
   <string name="per_night">per night</string>
-  <string name="fillter">Fillter</string>
   <string name="filter">Filter</string>
+  <string name="filters">Filters</string>
   <string name="check_in">Check In</string>
   <string name="apply">Apply</string>
   <string name="adults">Adults</string>
@@ -14,6 +14,7 @@
   <string name="under_2">Under 2</string>
   <string name="total_guests">Total guests</string>
   <string name="reset">Reset</string>
+  <string name="search_by_hotel_name">Search by Hotel Name</string>
 
   <string-array name="custom_weekdays">
     <item>Su</item>

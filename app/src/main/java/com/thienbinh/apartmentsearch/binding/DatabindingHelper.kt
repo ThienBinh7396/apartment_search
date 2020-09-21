@@ -169,7 +169,7 @@ class DataBindingHelper {
         datePicker.setOnDateChangedListener { widget, date, selected ->
           run {
             store.dispatch(
-              ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_FILTER(
+              ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_FILTER_UPDATE_DATE(
                 startDate = if (selected) date.date else null,
                 endDate = null
               )
@@ -184,14 +184,14 @@ class DataBindingHelper {
 
           if (dates.size >= 2) {
             store.dispatch(
-              ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_FILTER(
+              ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_FILTER_UPDATE_DATE(
                 startDate = dates[0].date,
                 endDate = dates[dates.size - 1].date
               )
             )
             Log.d("Binh", "Date start: ${dates[0].day} ${dates[dates.size - 1].day}}")
           } else {
-            ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_FILTER(
+            ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_FILTER_UPDATE_DATE(
               startDate = null,
               endDate = null
             )

@@ -55,8 +55,10 @@ class WidgetInputNumber @JvmOverloads constructor(
   private fun handleUpdateToStoreValue() {
     store.state.apartmentState.apartmentFilterModel.apply {
 
+      Log.d("Binh", "TyPE: $type ${ETypeWidgetInputNumber.CHILDREN.value} xxx")
+
       when (type) {
-        ETypeWidgetInputNumber.ADULT.ordinal -> {
+        ETypeWidgetInputNumber.ADULT.value -> {
           if (adultsAmount != numberValue)
             store.dispatch(
               ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_FILTER(
@@ -65,7 +67,9 @@ class WidgetInputNumber @JvmOverloads constructor(
             )
         }
 
-        ETypeWidgetInputNumber.CHILDREN.ordinal -> {
+        ETypeWidgetInputNumber.CHILDREN.value -> {
+          Log.d("Binh", "TyPE: $type Z$  $numberValue")
+
           if (childrenAmount != numberValue)
             store.dispatch(
               ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_FILTER(
@@ -74,7 +78,7 @@ class WidgetInputNumber @JvmOverloads constructor(
             )
         }
 
-        ETypeWidgetInputNumber.INFANT.ordinal -> {
+        ETypeWidgetInputNumber.INFANT.value -> {
           if (infantsAmount != numberValue)
             store.dispatch(
               ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_FILTER(
@@ -89,7 +93,7 @@ class WidgetInputNumber @JvmOverloads constructor(
   private var min = 0
   private var max = 10
 
-  private var type = ETypeWidgetInputNumber.ADULT.ordinal
+  private var type = ETypeWidgetInputNumber.ADULT.value
 
   private var numberValue = min
     set(value) {
@@ -136,7 +140,7 @@ class WidgetInputNumber @JvmOverloads constructor(
 
       type = attributeArray.getInt(
         R.styleable.WidgetInputNumber_typeChange,
-        ETypeWidgetInputNumber.ADULT.ordinal
+        ETypeWidgetInputNumber.ADULT.value
       )
 
 

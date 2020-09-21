@@ -168,7 +168,7 @@
         android:fontFamily="@font/lato_light"
         android:textColor="#717E9D"
         android:textSize="@dimen/font_md"
-        app:bindDayResult="@{3}" />
+        app:bindDayResult="@{apartmentStateViewModel.countDate}" />
 
       <LinearLayout
         android:layout_width="0dp"

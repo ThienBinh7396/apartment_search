@@ -37,11 +37,20 @@ fun apartmentReducer(action: Action, apartmentState: ApartmentState?): Apartment
       _apartmentState.apartmentFilterModel.apply {
         _apartmentState = _apartmentState.copy(
           apartmentFilterModel = this.copy(
-            startDate = action.startDate ?: startDate,
-            endDate = action.endDate ?: endDate,
             adultsAmount = action.adults ?: adultsAmount,
             childrenAmount = action.children ?: childrenAmount,
             infantsAmount = action.infants ?: infantsAmount,
+          )
+        )
+      }
+    }
+
+    is ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_FILTER_UPDATE_DATE -> {
+      _apartmentState.apartmentFilterModel.apply {
+        _apartmentState = _apartmentState.copy(
+          apartmentFilterModel = this.copy(
+            startDate = action.startDate,
+            endDate = action.endDate
           )
         )
       }
