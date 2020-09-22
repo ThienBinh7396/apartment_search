@@ -1,5 +1,6 @@
 package com.thienbinh.apartmentsearch.adapter.recycleView
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -8,19 +9,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thienbinh.apartmentsearch.R
 import com.thienbinh.apartmentsearch.databinding.ApartmentTypeLayoutBinding
 import com.thienbinh.apartmentsearch.db.entities.ApartmentType
-import com.thienbinh.apartmentsearch.db.entities.XXX
-import com.thienbinh.apartmentsearch.db.entities.deepCloneApartmentTypeList
-import com.thienbinh.apartmentsearch.haha
-import com.thienbinh.apartmentsearch.store
+import com.thienbinh.apartmentsearch.util.gson
 
 class ApartmentTypeAdapter : RecyclerView.Adapter<ApartmentTypeAdapter.ApartmentTypeViewHolder>() {
-  private val mApartmentTypes = store.state.apartmentState.apartmentTypes.deepCloneApartmentTypeList()
+  private val mApartmentTypes = mutableListOf<ApartmentType>()
 
   class ApartmentTypeViewHolder(val binding: ApartmentTypeLayoutBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bindData(data: ApartmentType) {
       binding.apartmentType = data
+      binding.executePendingBindings()
     }
   }
 
@@ -44,7 +43,20 @@ class ApartmentTypeAdapter : RecyclerView.Adapter<ApartmentTypeAdapter.Apartment
 
     mApartmentTypes[position].isActive = !mApartmentTypes[position].isActive
 
+    Log.d("Binh", "Gson: ${gson.toJson(mApartmentTypes[position])}")
+
     notifyItemChanged(position)
+  }
+
+  fun updateList(list: MutableList<ApartmentType>){
+    val diffCallback = ApartmentTypeCallBack(mApartmentTypes, list)
+
+    val diffResult = DiffUtil.calculateDiff(diffCallback)
+
+    mApartmentTypes.clear()
+    mApartmentTypes.addAll(list)
+
+    diffResult.dispatchUpdatesTo(this)
   }
 
   class ApartmentTypeCallBack(val oldList: MutableList<ApartmentType>, val newList: MutableList<ApartmentType>): DiffUtil.Callback(){

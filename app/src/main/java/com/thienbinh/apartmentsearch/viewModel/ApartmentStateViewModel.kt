@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.thienbinh.apartmentsearch.BR
 import com.thienbinh.apartmentsearch.db.entities.Apartment
+import com.thienbinh.apartmentsearch.db.entities.ApartmentType
 import com.thienbinh.apartmentsearch.db.entities.checkApartmentAreTheSame
 import com.thienbinh.apartmentsearch.model.ApartmentFilterModel
 import com.thienbinh.apartmentsearch.model.checkApartmentFilterModelAreTheSame
@@ -36,6 +37,9 @@ class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<Apartme
     value = store.state.apartmentState.apartmentFilterModel
   }
 
+  val apartmentTypes = MutableLiveData<MutableList<ApartmentType>>().apply {
+    value = store.state.apartmentState.apartmentTypes
+  }
 
   @Bindable
   fun getStartDate() = Helper.formatDate(apartmentFilterModel.value?.startDate)

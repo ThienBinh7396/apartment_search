@@ -75,7 +75,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/dimen_20"
-          android:layout_marginBottom="@dimen/dimen_2"
+          android:layout_marginBottom="@dimen/dimen_6"
           android:text="@string/sort_results" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -91,7 +91,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/dimen_20"
-          android:layout_marginBottom="@dimen/dimen_2"
+          android:layout_marginBottom="@dimen/dimen_6"
           android:text="@string/home_type" />
 
         <androidx.recyclerview.widget.RecyclerView

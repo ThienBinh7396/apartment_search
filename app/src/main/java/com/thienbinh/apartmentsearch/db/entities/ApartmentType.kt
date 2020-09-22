@@ -19,6 +19,7 @@ data class ApartmentType(
   val title: String,
   @ColumnInfo(name = "description")
   val description: String,
+  @ColumnInfo(name = "active")
   var isActive: Boolean = false
 ) : Serializable
 
