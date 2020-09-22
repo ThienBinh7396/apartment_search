@@ -1,14 +1,10 @@
 package com.thienbinh.apartmentsearch.binding
 
-import android.graphics.*
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.Html
-import android.transition.Transition
 import android.util.Log
 import android.view.View
-import android.widget.CalendarView
-import android.widget.DatePicker
+import android.widget.AbsSeekBar
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -17,18 +13,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ptrstovka.calendarview2.CalendarDay
 import com.ptrstovka.calendarview2.CalendarView2
-import com.ptrstovka.calendarview2.CalendarView2.SELECTION_MODE_RANGE
 import com.ptrstovka.calendarview2.format.ArrayWeekDayFormatter
 import com.ptrstovka.calendarview2.format.MonthArrayTitleFormatter
+import com.stfalcon.pricerangebar.RangeBarWithChart
+import com.stfalcon.pricerangebar.model.BarEntry
 import com.thienbinh.apartmentsearch.GlideApp
 import com.thienbinh.apartmentsearch.R
-import com.thienbinh.apartmentsearch.adapter.ApartmentAdapter
+import com.thienbinh.apartmentsearch.adapter.recycleView.SortTypeAdapter
+import com.thienbinh.apartmentsearch.adapter.recycleView.ApartmentAdapter
+import com.thienbinh.apartmentsearch.adapter.recycleView.ApartmentTypeAdapter
 import com.thienbinh.apartmentsearch.db.entities.Apartment
 import com.thienbinh.apartmentsearch.store
 import com.thienbinh.apartmentsearch.store.action.ApartmentAction
 import com.thienbinh.apartmentsearch.ui.customView.WidgetInputNumber
-import com.thienbinh.apartmentsearch.util.Helper
-import com.thienbinh.apartmentsearch.util.RangeDayDecorator
+import com.thienbinh.apartmentsearch.util.RecyclerViewTouchListener
 import com.thienbinh.apartmentsearch.util.SCALE_DP_PX
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import org.joda.time.DateTime
@@ -48,6 +46,108 @@ class DataBindingHelper {
           .fitCenter()
           .into(imageView)
       }
+    }
+
+    @BindingAdapter("app:bindShowUnless")
+    @JvmStatic
+    fun bindShowUnless(view: View, isShow: Boolean?) {
+      view.visibility = if (isShow != null && isShow) View.VISIBLE else View.GONE
+    }
+
+
+    @BindingAdapter("app:bindEntriesRangeBar")
+    @JvmStatic
+    fun bindEntriesRangeBar(seekBar: RangeBarWithChart, someThing: Any?) {
+      val barEntrys = ArrayList<BarEntry>()
+
+      val array = arrayOf(
+        22.0f to 0f,
+        25.0f to 0f,
+        28.0f to 0f,
+        30.0f to 0f,
+        32.0f to 0.0f,
+        35.0f to 1.0f,
+        38.0f to 2.0f,
+        40.0f to 2.0f,
+        42.0f to 3.0f,
+        45.0f to 5.0f,
+        48.0f to 7.0f,
+        50.0f to 10.0f,
+        52.0f to 10.0f,
+        55.0f to 11.0f,
+        58.0f to 12.0f,
+        60.0f to 15.0f,
+        62.0f to 19.0f,
+        65.0f to 19.0f,
+        68.0f to 18.0f,
+        70.0f to 19.0f,
+        72.0f to 20.0f,
+        75.0f to 23.0f,
+        78.0f to 24.0f,
+        80.0f to 23.0f,
+        82.0f to 23.0f,
+        85.0f to 26.0f,
+        88.0f to 26.0f,
+        90.0f to 29.0f,
+        92.0f to 29.0f,
+        95.0f to 30.0f,
+        98.0f to 30.0f,
+        100.0f to 32.0f,
+        102.0f to 32.0f,
+        105.0f to 38.0f,
+        108.0f to 38.0f,
+        110.0f to 40.0f,
+        112.0f to 40.0f,
+        115.0f to 37.0f,
+        118.0f to 37.0f,
+        120.0f to 37.0f,
+        122.0f to 37.0f,
+        125.0f to 33.0f,
+        128.0f to 33.0f,
+        130.0f to 28.0f,
+        132.0f to 28.0f,
+        135.0f to 23.0f,
+        138.0f to 23.0f,
+        140.0f to 22.0f,
+        142.0f to 22.0f,
+        145.0f to 17.0f,
+        148.0f to 17.0f,
+        150.0f to 16.0f,
+        152.0f to 14.0f,
+        155.0f to 13.0f,
+        158.0f to 11.0f,
+        160.0f to 10.0f,
+        162.0f to 9.0f,
+        165.0f to 9.0f,
+        168.0f to 8.0f,
+        170.0f to 7.0f,
+        172.0f to 7.0f,
+        175.0f to 8.0f,
+        178.0f to 6.0f,
+        180.0f to 6.0f,
+        182.0f to 5.0f,
+        185.0f to 5.0f,
+        188.0f to 6.0f,
+        190.0f to 6.0f,
+        192.0f to 4.0f,
+        195.0f to 2.0f,
+        198.0f to 2.0f,
+        200.0f to 3.0f,
+        202.0f to 4.0f,
+        205.0f to 3.0f,
+        208.0f to 2.0f,
+        210.0f to 0.0f,
+        212.0f to 0.0f,
+        215.0f to 0.0f,
+        218.0f to 0.0f,
+        220.0f to 0.0f,
+        222.0f to 0.0f
+      ).map { BarEntry(it.first, it.second) }
+
+      barEntrys.addAll(array)
+
+      seekBar.setEntries(barEntrys)
+
     }
 
     @BindingAdapter("app:bindTopLeftRadiusImageSrc")
@@ -73,12 +173,6 @@ class DataBindingHelper {
       }
     }
 
-    @BindingAdapter("app:bindShowUnless")
-    @JvmStatic
-    fun bindShowUnless(view: View, isShow: Boolean?) {
-      view.visibility = if (isShow != null && isShow) View.VISIBLE else View.GONE
-    }
-
     @BindingAdapter("app:bindHideView")
     @JvmStatic
     fun bindHideView(view: View, isShow: Boolean?) {
@@ -101,6 +195,60 @@ class DataBindingHelper {
       if (list != null) {
 
         (adapter as ApartmentAdapter).updateApartmentList(list)
+      }
+    }
+
+    @BindingAdapter("app:bindListSortType")
+    @JvmStatic
+    fun bindListSortType(rcv: RecyclerView, someThing: Any?) {
+      if (rcv.adapter == null) {
+        val adapter = SortTypeAdapter(rcv.context)
+
+        rcv.adapter = adapter
+
+        rcv.layoutManager = GridLayoutManager(rcv.context, 1, GridLayoutManager.HORIZONTAL, false)
+
+        rcv.addOnItemTouchListener(
+          RecyclerViewTouchListener(
+            rcv.context,
+            rcv,
+            object : RecyclerViewTouchListener.ClickListener {
+              override fun onClick(view: View?, position: Int) {
+                SortTypeAdapter.setActiveAtPosition(position)
+
+                adapter.updateListType()
+              }
+
+              override fun onLongClick(view: View?, position: Int) {
+              }
+            })
+        )
+      }
+    }
+
+    @BindingAdapter("app:bindApartmentStyle")
+    @JvmStatic
+    fun bindApartmentStyle(rcv: RecyclerView, someThing: Any?) {
+      if (rcv.adapter == null) {
+        val adapter = ApartmentTypeAdapter()
+
+        rcv.adapter = adapter
+
+        rcv.layoutManager = GridLayoutManager(rcv.context, 1, GridLayoutManager.VERTICAL, false)
+
+        rcv.addOnItemTouchListener(
+          RecyclerViewTouchListener(
+            rcv.context,
+            rcv,
+            object : RecyclerViewTouchListener.ClickListener {
+              override fun onClick(view: View?, position: Int) {
+                adapter.setActiveAt(position)
+              }
+
+              override fun onLongClick(view: View?, position: Int) {
+              }
+            })
+        )
       }
     }
 
@@ -246,5 +394,6 @@ class DataBindingHelper {
     fun bindNumberValueToWidgetInput(widget: WidgetInputNumber, num: Int?) {
       widget.updateNumberValue(num ?: 0)
     }
+
   }
 }

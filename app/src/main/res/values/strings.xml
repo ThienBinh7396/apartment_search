@@ -15,6 +15,11 @@
   <string name="total_guests">Total guests</string>
   <string name="reset">Reset</string>
   <string name="search_by_hotel_name">Search by Hotel Name</string>
+  <string name="sort_type">Sort type</string>
+  <string name="price_range">Price Range:</string>
+  <string name="sort_results">Sort results</string>
+  <string name="clear">Clear</string>
+  <string name="home_type">Home type</string>
 
   <string-array name="custom_weekdays">
     <item>Su</item>

@@ -4,6 +4,8 @@
 
   <data>
 
+    <import type="com.thienbinh.apartmentsearch.util.ConstantKt" />
+
     <variable
       name="apartmentStateViewModel"
       type="com.thienbinh.apartmentsearch.viewModel.ApartmentStateViewModel" />
@@ -14,6 +16,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorTextWhite"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:padding="@dimen/dimen_20">
 
@@ -27,36 +31,73 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:fontFamily="@font/lato_black"
+        android:fontFamily="@font/lato_bold"
         android:text="@string/filters"
         android:textColor="@color/colorTextDark"
-        android:textSize="@dimen/font_md"
+        android:textSize="@dimen/font_default"
         android:textStyle="bold" />
 
       <ImageButton
         android:id="@+id/btnClose"
         android:layout_width="@dimen/dimen_24"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dimen_24"
         android:layout_gravity="center"
         android:background="@color/colorTransparent"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_feather_x_circle" />
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="1">
+      android:layout_weight="1"
+      android:fillViewport="true">
 
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/dimen_20">
 
         <EditText
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:background="@drawable/edittext_background"
           android:hint="@string/search_by_hotel_name"
-          android:text="" />
+          android:padding="@dimen/dimen_16"
+          android:text=""
+          android:textColor="@color/colorTransparent"
+          android:textColorHint="@color/colorTextDisabled"
+          android:textSize="@dimen/font_md" />
+
+        <TextView
+          style="@style/TextSmallHeaderStyle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen_20"
+          android:layout_marginBottom="@dimen/dimen_2"
+          android:text="@string/sort_results" />
+
+        <androidx.recyclerview.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/dimen_42"
+          app:bindListSortType="@{true}" />
+
+        <include layout="@layout/filter_by_price_layout" />
+
+        <TextView
+          style="@style/TextSmallHeaderStyle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen_20"
+          android:layout_marginBottom="@dimen/dimen_2"
+          android:text="@string/home_type" />
+
+        <androidx.recyclerview.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          app:bindApartmentStyle="@{true}" />
 
       </LinearLayout>
     </androidx.core.widget.NestedScrollView>

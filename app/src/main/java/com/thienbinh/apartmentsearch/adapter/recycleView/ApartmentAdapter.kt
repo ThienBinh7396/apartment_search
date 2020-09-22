@@ -1,9 +1,8 @@
-package com.thienbinh.apartmentsearch.adapter
+package com.thienbinh.apartmentsearch.adapter.recycleView
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.thienbinh.apartmentsearch.R

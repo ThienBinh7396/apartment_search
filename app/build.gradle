@@ -102,4 +102,6 @@ dependencies {
     implementation 'joda-time:joda-time:2.10.6'
 
     implementation 'com.ptrstovka.calendarview2:calendarview2:2.0-alpha5'
+
+    implementation 'com.github.stfalcon:StfalconPriceRangeBar:0.1.2'
 }

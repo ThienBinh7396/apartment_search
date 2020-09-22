@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.thienbinh.apartmentsearch.db.tableHelper.TableName
+import com.thienbinh.apartmentsearch.util.gson
 import java.io.Serializable
 
 @Entity(
@@ -17,5 +18,14 @@ data class ApartmentType(
   @ColumnInfo(name = "title")
   val title: String,
   @ColumnInfo(name = "description")
-  val description: String
+  val description: String,
+  var isActive: Boolean = false
 ) : Serializable
+
+fun MutableList<ApartmentType>.deepCloneApartmentTypeList(): MutableList<ApartmentType> {
+  return gson.fromJson(gson.toJson(this), Array<ApartmentType>::class.java).toMutableList()
+}
+
+class XXX(val xxx: String) {
+
+}

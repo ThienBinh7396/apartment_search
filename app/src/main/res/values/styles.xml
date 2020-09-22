@@ -43,14 +43,32 @@
     <item name="android:windowFrame">@null</item>
     <item name="android:windowBackground">@null</item>
     <item name="android:windowIsFloating">true</item>
-    <item name="android:windowFullscreen">true</item>
     <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
     <item name="android:windowAnimationStyle">@style/CustomDialogAnimation</item>
   </style>
 
   <style name="CustomDialogAnimation">
     <item name="android:windowEnterAnimation">@anim/slide_in_up</item>
-    <item name="android:windowExitAnimation">@anim/slide_out_down</item>
+    <item name="android:windowExitAnimation">@anim/fragment_open_exit</item>
+  </style>
+
+
+  <style name="TextSmallHeaderStyle">
+    <item name="android:textColor">@color/colorText</item>
+    <item name="fontFamily">@font/lato_bold</item>
+    <item name="android:textSize">@dimen/font_sm</item>
+    <item name="android:layout_marginBottom">@dimen/dimen_2</item>
+  </style>
+
+  <style name="TextSmallActive">
+    <item name="android:textColor">@color/colorTextActive</item>
+    <item name="fontFamily">@font/lato_bold</item>
+    <item name="android:textSize">@dimen/font_sm</item>
+  </style>
+
+  <style name="TextHightLightStyle">
+    <item name="android:textColor">@color/colorTextDark</item>
+    <item name="fontFamily">@font/lato_bold</item>
   </style>
 
 </resources>

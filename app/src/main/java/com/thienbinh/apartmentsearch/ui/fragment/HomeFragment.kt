@@ -19,6 +19,8 @@ import com.thienbinh.apartmentsearch.databinding.FragmentBottomSheetChooseGuestL
 import com.thienbinh.apartmentsearch.databinding.FragmentBottomSheetFilterLayoutBinding
 import com.thienbinh.apartmentsearch.databinding.FragmentHomeBinding
 import com.thienbinh.apartmentsearch.store
+import com.thienbinh.apartmentsearch.util.windowHeight
+import com.thienbinh.apartmentsearch.util.windowWidth
 import com.thienbinh.apartmentsearch.viewModel.ApartmentStateViewModel
 import com.thienbinh.apartmentsearch.viewModel.FragmentHomeViewModel
 import com.thienbinh.apartmentsearch.viewModel.IFragmentHomeViewModelEventListener
@@ -84,23 +86,43 @@ class HomeFragment : Fragment(), IFragmentHomeViewModelEventListener {
           LayoutInflater.from(requireContext()),
           R.layout.fragment_bottom_sheet_filter_layout,
           null,
-          false
+          true
         ).apply {
-2
+          2
           apartmentStateViewModel = ApartmentStateViewModel()
 
           lifecycleOwner = this@HomeFragment
         }.root
       )
 
+      window?.setLayout(windowWidth, windowHeight)
+
       btnClose.setOnClickListener {
         this.dismiss()
       }
-
-      window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
     }
 
     return mFragmentHomeBinding.root
+  }
+
+  private fun setFullScreenBottomSheet(bottomSheet: BottomSheetDialog) {
+    val contentView = bottomSheet.findViewById<View>(R.id.container_view) as LinearLayout
+
+    val behavior = BottomSheetBehavior.from(contentView)
+
+    behavior.peekHeight = windowHeight
+
+
+    Log.d("Binh", "xxxxxxxxxxxx: ${behavior.expandedOffset}")
+
+    val layoutParams = contentView.layoutParams
+
+    layoutParams.height = windowHeight
+
+    contentView.layoutParams = layoutParams
+
+    behavior.state = BottomSheetBehavior.STATE_EXPANDED
+
   }
 
   override fun onStart() {

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+
+    <import type="com.thienbinh.apartmentsearch.util.Helper" />
+
+    <variable
+      name="sortType"
+      type="com.thienbinh.apartmentsearch.model.SortTypeModel" />
+  </data>
+
+  <androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/dimen_12"
+    android:foreground="?attr/selectableItemBackground"
+    android:onClick="@{() -> true}"
+    app:cardBackgroundColor="@{ Helper.getColorWithAlpha(sortType.color, sortType.active ? 0.46f : 0.12f)}"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:paddingHorizontal="@dimen/dimen_12"
+      android:paddingVertical="@dimen/dimen_10">
+
+      <ImageView
+        android:layout_width="@dimen/dimen_16"
+        android:layout_height="@dimen/dimen_16"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/dimen_4"
+        app:bindImageSrc="@{sortType.icon}" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/lato_bold"
+        android:text="@{sortType.title}"
+        android:textColor="@{sortType.textColor}"
+        android:textSize="@dimen/font_sm"
+        android:textStyle="bold" />
+    </LinearLayout>
+  </androidx.cardview.widget.CardView>
+</layout>

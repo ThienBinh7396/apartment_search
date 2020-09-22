@@ -1,13 +1,25 @@
 package com.thienbinh.apartmentsearch.util
 
+import android.graphics.Color
 import android.util.Log
 import com.thienbinh.apartmentsearch.model.enum.ETypeDateFormat
 import org.joda.time.DateTime
-import java.util.Date
 import java.text.DecimalFormat
+import java.util.*
+import kotlin.math.roundToInt
+
 
 class Helper {
   companion object {
+    @JvmStatic
+    fun getColorWithAlpha(color: Int, ratio: Float): Int {
+      val alpha = (Color.alpha(color) * ratio).roundToInt()
+      val r: Int = Color.red(color)
+      val g: Int = Color.green(color)
+      val b: Int = Color.blue(color)
+      return Color.argb(alpha, r, g, b)
+    }
+
     private fun getDecimalFromNumber(num: Int): String {
       var decimalString = ""
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
+      <TextView
+        style="@style/TextSmallHeaderStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_4"
+        android:text="@string/price_range" />
+
+      <TextView
+        style="@style/TextHightLightStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="$80 - $180" />
+
+      <TextView
+        style="@style/TextSmallActive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clear" />
+    </LinearLayout>
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Avg. Price: $121"
+      android:layout_marginTop="@dimen/dimen_2"
+      android:textSize="@dimen/font_xs" />
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <com.stfalcon.pricerangebar.RangeBarWithChart
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barActiveLineColor="@color/colorTextActiveLighten"
+        app:barThumbColor="@color/colorTextActive"
+        app:barActiveThumbColor="@color/colorTextActive"
+        app:barLineColor="@color/colorTextDisabled"
+        app:bindEntriesRangeBar="@{true}"
+        tools:targetApi="m"
+        android:translationY="-12dp"/>
+    </RelativeLayout>
+  </LinearLayout>
+
+</layout>
