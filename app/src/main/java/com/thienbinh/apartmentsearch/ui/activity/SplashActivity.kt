@@ -302,7 +302,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
       Apartment(
         null,
         title = "The Poppy Villa & Hotel",
-        thumbnail = "https://res.cloudinary.com/do1xjyyru/image/upload/v1600236657/apartment/60663271_gvhvky.jpg",
+        thumbnail = "https://cf.bstatic.com/images/hotel/max1024x768/213/213496867.jpg",
         price = 333.550f,
         address = "12 Ngõ Bà Triệu, Lê Đại Hành, Hai Bà Trưng, Hà Nội",
         longitude = 21.012417f,

@@ -1,16 +1,28 @@
 package com.thienbinh.apartmentsearch.binding
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.Html
 import android.util.Log
 import android.view.View
-import android.widget.AbsSeekBar
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.databinding.BindingAdapter
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.target.Target
 import com.ptrstovka.calendarview2.CalendarDay
 import com.ptrstovka.calendarview2.CalendarView2
 import com.ptrstovka.calendarview2.format.ArrayWeekDayFormatter
@@ -23,8 +35,11 @@ import com.thienbinh.apartmentsearch.adapter.recycleView.SortTypeAdapter
 import com.thienbinh.apartmentsearch.adapter.recycleView.ApartmentAdapter
 import com.thienbinh.apartmentsearch.adapter.recycleView.ApartmentTypeAdapter
 import com.thienbinh.apartmentsearch.db.entities.Apartment
+import com.thienbinh.apartmentsearch.db.entities.ApartmentType
+import com.thienbinh.apartmentsearch.model.customInterface.IApartmentAdapterEventListener
 import com.thienbinh.apartmentsearch.store
 import com.thienbinh.apartmentsearch.store.action.ApartmentAction
+import com.thienbinh.apartmentsearch.ui.activity.MainActivity
 import com.thienbinh.apartmentsearch.ui.customView.WidgetInputNumber
 import com.thienbinh.apartmentsearch.util.RecyclerViewTouchListener
 import com.thienbinh.apartmentsearch.util.SCALE_DP_PX
@@ -44,6 +59,59 @@ class DataBindingHelper {
         GlideApp.with(imageView.context)
           .load(src)
           .fitCenter()
+          .into(imageView)
+      }
+    }
+
+    val mapUrlWithBitmap = mutableMapOf<String, Drawable>()
+
+    @BindingAdapter("app:bindImageSrcWithCenterCrop")
+    @JvmStatic
+    fun bindImageSrcWithCenterCrop(imageView: ImageView, src: Any? = null) {
+      if (src != null) {
+        GlideApp.with(imageView.context)
+          .load(src)
+          .centerCrop()
+          .into(imageView)
+      }
+    }
+
+    @BindingAdapter("app:bindImageSrcWithCacheToMap")
+    @JvmStatic
+    fun bindImageSrcWithCacheToMap(imageView: ImageView, src: Any? = null) {
+      if (src != null) {
+        GlideApp.with(imageView.context)
+          .load(src)
+          .centerCrop()
+          .listener(object : RequestListener<Drawable>{
+            override fun onLoadFailed(
+              e: GlideException?,
+              model: Any?,
+              target: Target<Drawable>?,
+              isFirstResource: Boolean
+            ): Boolean {
+
+              Log.d("Binh", "Drawable faild: ${e?.message}")
+              return false
+            }
+
+            override fun onResourceReady(
+              resource: Drawable?,
+              model: Any?,
+              target: Target<Drawable>?,
+              dataSource: DataSource?,
+              isFirstResource: Boolean
+            ): Boolean {
+              Log.d("Binh", "Drawable: $resource")
+
+              if (mapUrlWithBitmap[src.toString()] == null && resource != null){
+                mapUrlWithBitmap[src.toString()] = resource
+              }
+
+              return false
+            }
+
+          })
           .into(imageView)
       }
     }
@@ -150,6 +218,7 @@ class DataBindingHelper {
 
     }
 
+
     @BindingAdapter("app:bindTopLeftRadiusImageSrc")
     @JvmStatic
     fun bindTopLeftRadiusImageSrc(imageView: ImageView, src: Any? = null) {
@@ -182,7 +251,22 @@ class DataBindingHelper {
     @BindingAdapter("app:bindApartmentList")
     @JvmStatic
     fun bindApartmentList(rcv: RecyclerView, list: MutableList<Apartment>?) {
-      var adapter = rcv.adapter ?: ApartmentAdapter()
+      var adapter = rcv.adapter ?: ApartmentAdapter(object : IApartmentAdapterEventListener {
+        override fun onGotoDetailEventListener(apartment: Apartment, imageView: ImageView) {
+          val transitionName = imageView.transitionName
+
+          val extras = FragmentNavigatorExtras(
+            imageView to transitionName
+          )
+
+          Log.d("Binh", "Transition: $transitionName")
+
+          rcv.findNavController().navigate(R.id.action_homeFragment_to_apartmentDetailFragment , bundleOf(
+            "apartment" to apartment,
+            "transitionName" to transitionName
+          ), null , extras)
+        }
+      })
 
       if (rcv.adapter == null) {
         rcv.adapter = adapter
@@ -228,10 +312,10 @@ class DataBindingHelper {
 
     @BindingAdapter("app:bindApartmentStyle")
     @JvmStatic
-    fun bindApartmentStyle(rcv: RecyclerView, someThing: Any?) {
-      if (rcv.adapter == null) {
-        val adapter = ApartmentTypeAdapter()
+    fun bindApartmentStyle(rcv: RecyclerView, list: MutableList<ApartmentType>?) {
+      val adapter = rcv.adapter ?: ApartmentTypeAdapter()
 
+      if (rcv.adapter == null) {
         rcv.adapter = adapter
 
         rcv.layoutManager = GridLayoutManager(rcv.context, 1, GridLayoutManager.VERTICAL, false)
@@ -242,7 +326,7 @@ class DataBindingHelper {
             rcv,
             object : RecyclerViewTouchListener.ClickListener {
               override fun onClick(view: View?, position: Int) {
-                adapter.setActiveAt(position)
+                store.dispatch(ApartmentAction.APARTMENT_ACTION_ACTIVE_APARTMENT_TYPE_AT(position))
               }
 
               override fun onLongClick(view: View?, position: Int) {
@@ -250,6 +334,8 @@ class DataBindingHelper {
             })
         )
       }
+
+      (adapter as ApartmentTypeAdapter).updateList(list ?: mutableListOf())
     }
 
     @BindingAdapter("app:bindResultFilter")

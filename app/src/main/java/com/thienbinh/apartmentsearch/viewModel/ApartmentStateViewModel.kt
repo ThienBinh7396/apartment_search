@@ -7,9 +7,7 @@ import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.thienbinh.apartmentsearch.BR
-import com.thienbinh.apartmentsearch.db.entities.Apartment
-import com.thienbinh.apartmentsearch.db.entities.ApartmentType
-import com.thienbinh.apartmentsearch.db.entities.checkApartmentAreTheSame
+import com.thienbinh.apartmentsearch.db.entities.*
 import com.thienbinh.apartmentsearch.model.ApartmentFilterModel
 import com.thienbinh.apartmentsearch.model.checkApartmentFilterModelAreTheSame
 import com.thienbinh.apartmentsearch.store
@@ -20,7 +18,6 @@ import org.joda.time.Days
 import org.rekotlin.StoreSubscriber
 
 class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<ApartmentState> {
-
   init {
     store.subscribe(this) {
       it.select {
@@ -30,7 +27,7 @@ class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<Apartme
   }
 
   val apartments = MutableLiveData<MutableList<Apartment>>().apply {
-    value = store.state.apartmentState.apartments
+    value = store.state.apartmentState.apartments.deepCloneApartmentList()
   }
 
   val apartmentFilterModel = MutableLiveData<ApartmentFilterModel>().apply {
@@ -38,7 +35,7 @@ class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<Apartme
   }
 
   val apartmentTypes = MutableLiveData<MutableList<ApartmentType>>().apply {
-    value = store.state.apartmentState.apartmentTypes
+    value = store.state.apartmentState.apartmentTypes.deepCloneApartmentTypeList()
   }
 
   @Bindable
@@ -85,7 +82,7 @@ class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<Apartme
         checkApartmentAreTheSame
       )
     ) {
-      apartments.value = state.apartments
+      apartments.value = state.apartments.deepCloneApartmentList()
     }
 
     if (apartmentFilterModel?.value != null && !checkApartmentFilterModelAreTheSame(
@@ -100,6 +97,18 @@ class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<Apartme
       callbacks.notifyCallbacks(this, BR.startDate, null)
       callbacks.notifyCallbacks(this, BR.endDate, null)
       callbacks.notifyCallbacks(this, BR.countDate, null)
+    }
+
+    if (apartmentTypes?.value != null && !Helper.checkListAreTheSame(
+        apartmentTypes.value!!,
+        state.apartmentTypes,
+        checkApartmentTypeAreTheSame
+      )
+    ) {
+      apartmentTypes.value = state.apartmentTypes.deepCloneApartmentTypeList()
+
+
+      Log.d("Binh", "Update apartment type")
     }
   }
 

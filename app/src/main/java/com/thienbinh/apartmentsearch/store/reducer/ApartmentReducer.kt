@@ -1,8 +1,10 @@
 package com.thienbinh.apartmentsearch.store.reducer
 
 import android.util.Log
+import com.thienbinh.apartmentsearch.db.entities.deepCloneApartmentTypeList
 import com.thienbinh.apartmentsearch.store.action.ApartmentAction
 import com.thienbinh.apartmentsearch.store.state.ApartmentState
+import com.thienbinh.apartmentsearch.util.gson
 import org.rekotlin.Action
 
 fun apartmentReducer(action: Action, apartmentState: ApartmentState?): ApartmentState {
@@ -26,8 +28,6 @@ fun apartmentReducer(action: Action, apartmentState: ApartmentState?): Apartment
     }
 
     is ApartmentAction.Apartment_ACTION_UPDATE_APARTMENT_TYPES -> {
-      Log.d("Binh", "Apartment type")
-
       _apartmentState = _apartmentState.copy(
         apartmentTypes = action.list
       )

@@ -47,59 +47,115 @@
         android:src="@drawable/ic_feather_x_circle" />
     </LinearLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_weight="1"
-      android:fillViewport="true">
+      android:layout_weight="1">
+
+      <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:paddingBottom="@dimen/dimen_28"
+          android:paddingTop="@dimen/dimen_20">
+
+          <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:hint="@string/search_by_hotel_name"
+            android:padding="@dimen/dimen_16"
+            android:text=""
+            android:textColor="@color/colorTransparent"
+            android:textColorHint="@color/colorTextDisabled"
+            android:textSize="@dimen/font_md" />
+
+          <TextView
+            style="@style/TextSmallHeaderStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:layout_marginBottom="@dimen/dimen_6"
+            android:text="@string/sort_results" />
+
+          <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dimen_42"
+            app:bindListSortType="@{true}" />
+
+          <include layout="@layout/filter_by_price_layout" />
+
+          <TextView
+            style="@style/TextSmallHeaderStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:layout_marginBottom="@dimen/dimen_10"
+            android:text="@string/home_type" />
+
+          <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:bindApartmentStyle="@{apartmentStateViewModel.apartmentTypes}"
+            android:layout_marginBottom="82dp"/>
+
+        </LinearLayout>
+      </androidx.core.widget.NestedScrollView>
 
       <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingVertical="@dimen/dimen_20">
+        android:layout_height="@dimen/dimen_filter_widget_height_sm"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/dimen_32"
+        android:layout_marginBottom="@dimen/dimen_18"
+        android:background="@drawable/widget_button_filter_background"
+        android:elevation="2dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
 
-        <EditText
-          android:layout_width="match_parent"
+        <Button
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:background="@drawable/edittext_background"
-          android:hint="@string/search_by_hotel_name"
-          android:padding="@dimen/dimen_16"
-          android:text=""
-          android:textColor="@color/colorTransparent"
-          android:textColorHint="@color/colorTextDisabled"
-          android:textSize="@dimen/font_md" />
+          android:layout_gravity="center"
+          android:layout_weight="2"
+          android:background="@color/colorTransparent"
+          android:fontFamily="@font/lato_black"
+          android:text="@string/reset"
+          android:textAlignment="center"
+          android:textAllCaps="false"
+          android:textColor="@color/colorTextActive"
+          android:textSize="@dimen/font_md"
+          android:textStyle="bold" />
 
-        <TextView
-          style="@style/TextSmallHeaderStyle"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/dimen_20"
-          android:layout_marginBottom="@dimen/dimen_6"
-          android:text="@string/sort_results" />
+        <LinearLayout
+          android:layout_width="0dp"
+          android:layout_weight="3"
+          android:layout_height="@dimen/dimen_filter_widget_height_sm"
+          android:background="@drawable/button_active_rounded_ripple_background"
+          android:clickable="true"
+          android:focusable="true"
+          android:gravity="center"
+          android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginBottom="@dimen/dimen_42"
-          app:bindListSortType="@{true}" />
-
-        <include layout="@layout/filter_by_price_layout" />
-
-        <TextView
-          style="@style/TextSmallHeaderStyle"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="@dimen/dimen_20"
-          android:layout_marginBottom="@dimen/dimen_6"
-          android:text="@string/home_type" />
-
-        <androidx.recyclerview.widget.RecyclerView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:bindApartmentStyle="@{true}" />
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/lato_black"
+            android:text="@string/apply_filters"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="@dimen/font_sm"
+            android:textStyle="bold" />
+        </LinearLayout>
 
       </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+
   </LinearLayout>
 </layout>

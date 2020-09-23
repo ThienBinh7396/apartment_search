@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thienbinh.apartmentsearch.R
 import com.thienbinh.apartmentsearch.databinding.ApartmentTypeLayoutBinding
 import com.thienbinh.apartmentsearch.db.entities.ApartmentType
+import com.thienbinh.apartmentsearch.db.entities.deepCloneApartmentTypeList
 import com.thienbinh.apartmentsearch.util.gson
 
 class ApartmentTypeAdapter : RecyclerView.Adapter<ApartmentTypeAdapter.ApartmentTypeViewHolder>() {
-  private val mApartmentTypes = mutableListOf<ApartmentType>()
+  private var mApartmentTypes = mutableListOf<ApartmentType>()
 
   class ApartmentTypeViewHolder(val binding: ApartmentTypeLayoutBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -38,29 +39,21 @@ class ApartmentTypeAdapter : RecyclerView.Adapter<ApartmentTypeAdapter.Apartment
 
   override fun getItemCount(): Int = mApartmentTypes.size
 
-  fun setActiveAt(position: Int){
-    if (position >= mApartmentTypes.size) return
-
-    mApartmentTypes[position].isActive = !mApartmentTypes[position].isActive
-
-    Log.d("Binh", "Gson: ${gson.toJson(mApartmentTypes[position])}")
-
-    notifyItemChanged(position)
-  }
-
-  fun updateList(list: MutableList<ApartmentType>){
+  fun updateList(list: MutableList<ApartmentType>) {
     val diffCallback = ApartmentTypeCallBack(mApartmentTypes, list)
 
     val diffResult = DiffUtil.calculateDiff(diffCallback)
 
-    mApartmentTypes.clear()
-    mApartmentTypes.addAll(list)
+    mApartmentTypes = list
 
     diffResult.dispatchUpdatesTo(this)
   }
 
-  class ApartmentTypeCallBack(val oldList: MutableList<ApartmentType>, val newList: MutableList<ApartmentType>): DiffUtil.Callback(){
-    override fun getOldListSize(): Int  = oldList.size
+  class ApartmentTypeCallBack(
+    private val oldList: MutableList<ApartmentType>,
+    private val newList: MutableList<ApartmentType>
+  ) : DiffUtil.Callback() {
+    override fun getOldListSize(): Int = oldList.size
 
     override fun getNewListSize(): Int = newList.size
 

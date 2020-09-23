@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+
+    <variable
+      name="apartmentViewModel"
+      type="com.thienbinh.apartmentsearch.viewModel.ApartmentViewModel" />
+  </data>
+
+  <androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTextWhite"
+    android:elevation="0dp">
+
+    <com.google.android.material.appbar.AppBarLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/colorTransparent"
+      android:elevation="0dp"
+      android:outlineProvider="none"
+      android:translationZ="0.1dp">
+
+      <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorTransparent"
+        android:elevation="0dp"
+        android:fitsSystemWindows="true"
+        app:contentScrim="@color/colorTextActive"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed"
+        app:title="@{apartmentViewModel.apartment.title}">
+
+        <ImageView
+          android:id="@+id/imvThumbnail"
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/dimen_fragment_adapter_detail_image_height"
+          android:background="@color/colorTransparent"
+          android:scaleType="centerCrop"
+          app:layout_collapseMode="parallax" />
+
+        <androidx.appcompat.widget.Toolbar
+          android:layout_width="match_parent"
+          android:layout_height="90dp"
+          android:background="@null"
+          android:gravity="top"
+          android:translationZ="0dp"
+          app:contentInsetEnd="0dp"
+          app:contentInsetLeft="0dp"
+          app:contentInsetStart="0dp"
+          app:layout_collapseMode="pin"
+          app:layout_scrollFlags="scroll|enterAlways">
+
+          <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+            <androidx.cardview.widget.CardView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:foreground="@drawable/mask_thumbnail_fragment_apartment_detail"
+              app:cardBackgroundColor="@color/colorTransparent"
+              app:cardElevation="0dp" />
+
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@null"
+              android:orientation="horizontal"
+              android:paddingHorizontal="@dimen/dimen_16">
+
+              <ImageButton
+                android:id="@+id/ibnGoBack"
+                android:layout_width="@dimen/dimen_28"
+                android:layout_height="@dimen/dimen_28"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/dimen_8"
+                android:background="@drawable/round_icon_button_transparent_ripple_background"
+                android:src="@drawable/ic_feather_arrow_left" />
+
+              <TextView
+                style="@style/TextHightLightStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{apartmentViewModel.apartment.title}"
+                android:textColor="@color/colorTextWhite" />
+
+              <ImageButton
+                android:layout_width="@dimen/dimen_28"
+                android:layout_height="@dimen/dimen_28"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/dimen_8"
+                android:background="@drawable/round_icon_button_transparent_ripple_background"
+                android:src="@drawable/ic_feather_heart" />
+
+              <ImageButton
+                android:layout_width="@dimen/dimen_28"
+                android:layout_height="@dimen/dimen_28"
+                android:layout_gravity="center"
+                android:background="@drawable/round_icon_button_transparent_ripple_background"
+                android:src="@drawable/ic_feather_share" />
+
+            </LinearLayout>
+          </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+      </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@drawable/dialog_fragment_background"
+      android:clipToPadding="true"
+      android:elevation="0.1dp"
+      android:fillViewport="true"
+      android:translationY="-26dp"
+      android:translationZ="4dp"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@null"
+          android:orientation="vertical"
+          android:padding="@dimen/dimen_24">
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@{apartmentViewModel.apartment.title}" />
+
+
+          <TextView
+          android:background="@color/colorTextWhite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+  </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

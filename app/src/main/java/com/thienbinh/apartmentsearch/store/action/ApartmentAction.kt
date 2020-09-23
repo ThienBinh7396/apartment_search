@@ -22,4 +22,8 @@ sealed class ApartmentAction : Action {
     var children: Int? = null,
     var infants: Int? = null,
   ) : Action
+
+  class APARTMENT_ACTION_ACTIVE_APARTMENT_TYPE_AT(
+    val position: Int
+  ): Action
 }

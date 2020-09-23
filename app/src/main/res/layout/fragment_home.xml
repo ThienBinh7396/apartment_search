@@ -31,7 +31,8 @@
           android:layout_height="@dimen/dimen_icon_button_width"
           android:layout_gravity="center"
           android:background="@color/colorTransparent"
-          android:src="@drawable/ic_feather_arrow_left" />
+          android:src="@drawable/ic_feather_arrow_left"
+          android:tint="#9FA5B4" />
 
         <TextView
           android:layout_width="0dp"
@@ -120,7 +121,9 @@
           android:paddingBottom="@dimen/dimen_12">
 
           <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvApartments"
             android:layout_width="match_parent"
+            android:overScrollMode="never"
             android:layout_height="wrap_content"
             app:bindApartmentList="@{fragmentHomeViewModel.apartments}" />
 
@@ -131,7 +134,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_filter_widget_height"
         android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="@dimen/dimen_28"
+        android:layout_marginHorizontal="@dimen/dimen_32"
         android:layout_marginBottom="@dimen/dimen_24"
         android:background="@drawable/widget_button_filter_background"
         android:elevation="2dp">

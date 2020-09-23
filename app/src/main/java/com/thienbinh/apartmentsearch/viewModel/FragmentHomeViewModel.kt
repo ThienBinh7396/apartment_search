@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.thienbinh.apartmentsearch.BR
 import com.thienbinh.apartmentsearch.db.entities.Apartment
 import com.thienbinh.apartmentsearch.db.entities.checkApartmentAreTheSame
+import com.thienbinh.apartmentsearch.db.entities.deepCloneApartmentList
 import com.thienbinh.apartmentsearch.model.ApartmentFilterModel
 import com.thienbinh.apartmentsearch.model.checkApartmentFilterModelAreTheSame
 import com.thienbinh.apartmentsearch.store
@@ -38,7 +39,7 @@ class FragmentHomeViewModel(eventListener: IFragmentHomeViewModelEventListener? 
   }
 
   val apartments = MutableLiveData<MutableList<Apartment>>().apply {
-    value = store.state.apartmentState.apartments
+    value = store.state.apartmentState.apartments.deepCloneApartmentList()
   }
 
   val apartmentFilterModel = MutableLiveData<ApartmentFilterModel>().apply {
@@ -84,7 +85,7 @@ class FragmentHomeViewModel(eventListener: IFragmentHomeViewModelEventListener? 
         checkApartmentAreTheSame
       )
     ) {
-      apartments.value = state.apartments
+      apartments.value = state.apartments.deepCloneApartmentList()
     }
 
 

@@ -47,4 +47,6 @@
   
   <dimen name="dimen_input_number_container_bottom_sheet">112dp</dimen>
 
+  <dimen name="dimen_fragment_adapter_detail_image_height">240dp</dimen>
+
 </resources>

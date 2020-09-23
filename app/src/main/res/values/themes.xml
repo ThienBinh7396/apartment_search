@@ -7,7 +7,9 @@
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">#3165ec</item>
     <item name="colorAccent">#3165ec</item>
-    <item name="colorControlActivated">#3165ec</item>\
+    <item name="colorControlActivated">#3165ec</item>
     <item name="colorControlHighlight">#566FB1</item>
+
+    <item name="android:windowContentTransitions">true</item>
   </style>
 </resources>

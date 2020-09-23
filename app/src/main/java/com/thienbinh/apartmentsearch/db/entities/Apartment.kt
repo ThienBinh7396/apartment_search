@@ -2,6 +2,7 @@ package com.thienbinh.apartmentsearch.db.entities
 
 import androidx.room.*
 import com.thienbinh.apartmentsearch.db.tableHelper.TableName
+import com.thienbinh.apartmentsearch.util.gson
 import java.io.Serializable
 
 @Entity(
@@ -47,3 +48,7 @@ val checkApartmentAreTheSame =
   { elementOne: Apartment, elementTwo: Apartment ->
     elementOne.id == elementTwo.id && elementOne.title == elementTwo.title && elementOne.isLiked == elementTwo.isLiked
   }
+
+fun MutableList<Apartment>.deepCloneApartmentList(): MutableList<Apartment> {
+  return gson.fromJson(gson.toJson(this), Array<Apartment>::class.java).toMutableList()
+}

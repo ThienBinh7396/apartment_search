@@ -1,5 +1,6 @@
 package com.thienbinh.apartmentsearch.db.entities
 
+import android.util.Log
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
@@ -27,6 +28,7 @@ fun MutableList<ApartmentType>.deepCloneApartmentTypeList(): MutableList<Apartme
   return gson.fromJson(gson.toJson(this), Array<ApartmentType>::class.java).toMutableList()
 }
 
-class XXX(val xxx: String) {
+val checkApartmentTypeAreTheSame =
+  { elementOne: ApartmentType, elementTwo: ApartmentType ->  elementOne.id === elementTwo.id && elementOne.title == elementTwo.title && elementOne.isActive == elementTwo.isActive
+  }
 
-}

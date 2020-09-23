@@ -9,10 +9,18 @@ import android.util.Log
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.core.os.bundleOf
+import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
+import androidx.transition.ChangeBounds
+import androidx.transition.TransitionInflater
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.thienbinh.apartmentsearch.GlideApp
 import com.thienbinh.apartmentsearch.R
 import com.thienbinh.apartmentsearch.databinding.FragmentBottomSheetChooseDateLayoutBinding
 import com.thienbinh.apartmentsearch.databinding.FragmentBottomSheetChooseGuestLayoutBinding
@@ -47,6 +55,7 @@ class HomeFragment : Fragment(), IFragmentHomeViewModelEventListener {
         FragmentHomeViewModel(eventListener = this@HomeFragment)
 
       lifecycleOwner = viewLifecycleOwner
+
     }
 
     mChooseDateDialog = BottomSheetDialog(requireContext(), R.style.SheetDialog).apply {
@@ -88,7 +97,6 @@ class HomeFragment : Fragment(), IFragmentHomeViewModelEventListener {
           null,
           true
         ).apply {
-          2
           apartmentStateViewModel = ApartmentStateViewModel()
 
           lifecycleOwner = this@HomeFragment
@@ -104,27 +112,6 @@ class HomeFragment : Fragment(), IFragmentHomeViewModelEventListener {
 
     return mFragmentHomeBinding.root
   }
-
-  private fun setFullScreenBottomSheet(bottomSheet: BottomSheetDialog) {
-    val contentView = bottomSheet.findViewById<View>(R.id.container_view) as LinearLayout
-
-    val behavior = BottomSheetBehavior.from(contentView)
-
-    behavior.peekHeight = windowHeight
-
-
-    Log.d("Binh", "xxxxxxxxxxxx: ${behavior.expandedOffset}")
-
-    val layoutParams = contentView.layoutParams
-
-    layoutParams.height = windowHeight
-
-    contentView.layoutParams = layoutParams
-
-    behavior.state = BottomSheetBehavior.STATE_EXPANDED
-
-  }
-
   override fun onStart() {
     super.onStart()
 
