@@ -11,6 +11,10 @@ import kotlin.math.roundToInt
 
 class Helper {
   companion object {
+    fun Float.roundTo(n : Int) : Float {
+      return "%.${n}f".format(Locale.US, this).toFloat()
+    }
+
     @JvmStatic
     fun getColorWithAlpha(color: Int, ratio: Float): Int {
       val alpha = (Color.alpha(color) * ratio).roundToInt()

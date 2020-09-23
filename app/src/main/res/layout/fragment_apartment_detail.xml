@@ -12,10 +12,11 @@
   <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorTextWhite"
+    android:background="@color/colorTextActive"
     android:elevation="0dp">
 
     <com.google.android.material.appbar.AppBarLayout
+      android:id="@+id/appBar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:background="@color/colorTransparent"
@@ -43,9 +44,10 @@
 
         <androidx.appcompat.widget.Toolbar
           android:layout_width="match_parent"
-          android:layout_height="90dp"
+          android:layout_height="100dp"
           android:background="@null"
           android:gravity="top"
+          android:padding="0dp"
           android:translationZ="0dp"
           app:contentInsetEnd="0dp"
           app:contentInsetLeft="0dp"
@@ -55,7 +57,7 @@
 
           <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="56dp">
+            android:layout_height="64dp">
 
             <androidx.cardview.widget.CardView
               android:layout_width="match_parent"
@@ -66,8 +68,7 @@
 
             <LinearLayout
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@null"
+              android:layout_height="64dp"
               android:orientation="horizontal"
               android:paddingHorizontal="@dimen/dimen_16">
 
@@ -81,11 +82,13 @@
                 android:src="@drawable/ic_feather_arrow_left" />
 
               <TextView
+                android:id="@+id/headerTitle"
                 style="@style/TextHightLightStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:alpha="0"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="@{apartmentViewModel.apartment.title}"
@@ -113,6 +116,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+      android:id="@+id/content"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:background="@drawable/dialog_fragment_background"
@@ -123,23 +127,128 @@
       android:translationZ="4dp"
       app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:orientation="vertical"
+        android:padding="@dimen/dimen_24">
+
+        <TextView
+          style="@style/TextHightLightStyle"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:fontFamily="@font/lato_black"
+          android:text="@{apartmentViewModel.apartment.title}"
+          android:textSize="@dimen/font_lg"
+          android:textStyle="bold" />
+
         <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="@null"
-          android:orientation="vertical"
-          android:padding="@dimen/dimen_24">
-          <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{apartmentViewModel.apartment.title}" />
+          android:layout_marginTop="@dimen/dimen_16"
+          android:orientation="horizontal">
 
+          <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_feather_map_pin" />
 
           <TextView
-          android:background="@color/colorTextWhite"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_4"
+            android:layout_weight="1"
+            android:text="@{apartmentViewModel.apartment.address}" />
         </LinearLayout>
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen_20"
+          android:orientation="horizontal">
+
+          <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_8"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#f0f6ff"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#f0f6ff"
+              android:orientation="horizontal"
+              android:paddingHorizontal="@dimen/dimen_12"
+              android:paddingVertical="@dimen/dimen_10">
+
+              <ImageView
+                android:layout_width="@dimen/dimen_16"
+                android:layout_height="@dimen/dimen_16"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/dimen_4"
+                android:src="@drawable/ic_feather_message_circle" />
+
+              <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/lato_bold"
+                android:text="11 Reviews"
+                android:textColor="#435582"
+                android:textSize="@dimen/font_sm"
+                android:textStyle="bold" />
+            </LinearLayout>
+          </androidx.cardview.widget.CardView>
+
+          <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_8"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#fefaf2"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:paddingHorizontal="@dimen/dimen_12"
+              android:paddingVertical="@dimen/dimen_10">
+
+              <ImageView
+                android:layout_width="@dimen/dimen_16"
+                android:layout_height="@dimen/dimen_16"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/dimen_4"
+                android:src="@drawable/ic_feather_star_2" />
+
+              <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/lato_bold"
+                android:text="4.6 Avg. Rating"
+                android:textColor="#9c8860"
+                android:textSize="@dimen/font_sm"
+                android:textStyle="bold" />
+            </LinearLayout>
+          </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen_20"
+          android:text="@{apartmentViewModel.apartment.description}"
+          android:textColor="@color/colorTextDark"
+          android:textSize="@dimen/font_sm" />
+      </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
   </androidx.coordinatorlayout.widget.CoordinatorLayout>

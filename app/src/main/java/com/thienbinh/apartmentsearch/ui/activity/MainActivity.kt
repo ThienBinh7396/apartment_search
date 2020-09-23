@@ -37,11 +37,4 @@ class MainActivity : AppCompatActivity() {
   private fun setupNavigation() {
     navControllerMainActivity = findNavController(R.id.nav_host)
   }
-
-  override fun finish() {
-    super.finish()
-
-    ActivityNavigator.applyPopAnimationsToPendingTransition(this)
-
-  }
 }

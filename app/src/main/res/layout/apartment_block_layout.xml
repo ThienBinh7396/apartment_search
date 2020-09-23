@@ -88,7 +88,7 @@
             android:id="@+id/imvThumbnail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="0"
+            android:layout_margin="@dimen/dimen_24"
             app:bindImageSrcWithCacheToMap="@{apartmentViewModel.apartment.thumbnail}" />
 
           <ImageView

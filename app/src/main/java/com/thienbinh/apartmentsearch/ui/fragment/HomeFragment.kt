@@ -112,6 +112,13 @@ class HomeFragment : Fragment(), IFragmentHomeViewModelEventListener {
 
     return mFragmentHomeBinding.root
   }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+    sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+  }
+
   override fun onStart() {
     super.onStart()
 
