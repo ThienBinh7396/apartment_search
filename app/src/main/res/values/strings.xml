@@ -24,6 +24,10 @@
   <string name="amenities">Amenities</string>
   <string name="nearby_landmarks">Nearby landmarks</string>
   <string name="location">Location</string>
+  <string name="house_rules">House Rules</string>
+  <string name="house_rule">No pets \nNo smoking, parties, or events \nCheck-in is anytime after 3PM and check out by 11AM</string>
+  <string name="cancellation"><b>Strict</b> \nThis reservation is non-refundable because check-in is less than 7 days away.
+  </string>
 
   <string-array name="custom_weekdays">
     <item>Su</item>

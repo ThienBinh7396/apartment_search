@@ -166,7 +166,27 @@ class ApartmentDetailFragment : Fragment(), OnMapReadyCallback {
     mApartment?.apply {
       val apartmentLatLng = LatLng(latitude, longitude)
 
-      val mapRipple = MapRipple(googleMap!!, apartmentLatLng, requireContext())
+      val cameraPosition = CameraPosition.Builder()
+        .target(apartmentLatLng).zoom(17f).build()
+
+      googleMap?.moveCamera(
+        CameraUpdateFactory
+          .newCameraPosition(cameraPosition)
+      )
+
+
+      googleMap?.addMarker(
+        MarkerOptions()
+          .icon(
+            BitmapDescriptorFactory.fromBitmap(
+              makeBitmapText(requireContext(), title, address, 300, 100)
+            )
+          )
+          .position(apartmentLatLng)
+          .anchor(-0.05f, 0.2f)
+      )
+
+      MapRipple(googleMap!!, apartmentLatLng, requireContext())
         .stopRippleMapAnimation()
         .withNumberOfRipples(4)
         .withFillColor(Color.parseColor("#6e93f1"))
@@ -176,17 +196,6 @@ class ApartmentDetailFragment : Fragment(), OnMapReadyCallback {
         .withDurationBetweenTwoRipples(1500)
         .withTransparency(0.6f)
         .startRippleMapAnimation()
-
-      googleMap.addMarker(
-        MarkerOptions()
-          .icon(
-            BitmapDescriptorFactory.fromBitmap(
-              makeBitmapText(requireContext(), title, address, 300, 100)
-            )
-          )
-          .position(apartmentLatLng)
-          .anchor(-0.1f, 0.2f)
-      )
 
       val marker = googleMap.addMarker(
         MarkerOptions()
@@ -204,14 +213,6 @@ class ApartmentDetailFragment : Fragment(), OnMapReadyCallback {
           .anchor(0.5f, 0.5f)
       )
 
-      val cameraPosition = CameraPosition.Builder()
-        .target(apartmentLatLng).zoom(17f).build()
-
-      googleMap.moveCamera(
-        CameraUpdateFactory
-          .newCameraPosition(cameraPosition)
-      )
-
       Log.d("Binh", "Map: $googleMap $latitude $longitude")
     }
 
@@ -224,7 +225,7 @@ class ApartmentDetailFragment : Fragment(), OnMapReadyCallback {
     val paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     paint.color = Color.parseColor("#111111")// Text color
-    paint.textSize = 12 * SCALE_DP_PX // Text size
+    paint.textSize = 11 * SCALE_DP_PX // Text size
 
     canvas.drawText(title, 20f, 30f, paint)
     return bitmap
