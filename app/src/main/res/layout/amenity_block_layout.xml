@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+
+    <variable
+      name="amenity"
+      type="com.thienbinh.apartmentsearch.db.entities.ApartmentAmenity" />
+  </data>
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/dimen_6">
+
+    <RelativeLayout
+      android:layout_width="@dimen/dimen_56"
+      android:layout_height="@dimen/dimen_46">
+
+      <ImageView
+        android:layout_width="@dimen/dimen_36"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:tint="#9FA5B4"
+        app:bindImageSrc="@{amenity.icon}" />
+
+    </RelativeLayout>
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginTop="@dimen/dimen_10"
+      android:text="@{amenity.title}"
+      android:textAlignment="center"
+      android:tint="#9FA5B4" />
+  </LinearLayout>
+</layout>

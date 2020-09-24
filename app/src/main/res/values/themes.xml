@@ -5,7 +5,7 @@
     <item name="fontFamily">@font/lato_regular</item>
     <item name="android:textColor">@color/colorText</item>
     <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorTransparent</item>
+    <item name="colorPrimaryDark">#97333333</item>
     <item name="colorAccent">#3165ec</item>
     <item name="colorControlActivated">#3165ec</item>
     <item name="colorControlHighlight">#566FB1</item>

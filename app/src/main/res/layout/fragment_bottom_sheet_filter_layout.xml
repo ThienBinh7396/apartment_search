@@ -102,6 +102,7 @@
           <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:overScrollMode="never"
             app:bindApartmentStyle="@{apartmentStateViewModel.apartmentTypes}"
             android:layout_marginBottom="82dp"/>
 

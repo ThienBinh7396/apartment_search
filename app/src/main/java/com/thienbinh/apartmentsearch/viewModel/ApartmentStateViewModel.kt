@@ -13,6 +13,7 @@ import com.thienbinh.apartmentsearch.model.checkApartmentFilterModelAreTheSame
 import com.thienbinh.apartmentsearch.store
 import com.thienbinh.apartmentsearch.store.state.ApartmentState
 import com.thienbinh.apartmentsearch.util.Helper
+import com.thienbinh.apartmentsearch.util.Helper.Companion.deepCloneList
 import org.joda.time.DateTime
 import org.joda.time.Days
 import org.rekotlin.StoreSubscriber
@@ -35,7 +36,7 @@ class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<Apartme
   }
 
   val apartmentTypes = MutableLiveData<MutableList<ApartmentType>>().apply {
-    value = store.state.apartmentState.apartmentTypes.deepCloneApartmentTypeList()
+    value = store.state.apartmentState.apartmentTypes.deepCloneList(Array<ApartmentType>::class.java)
   }
 
   @Bindable
@@ -105,7 +106,7 @@ class ApartmentStateViewModel : ViewModel(), Observable, StoreSubscriber<Apartme
         checkApartmentTypeAreTheSame
       )
     ) {
-      apartmentTypes.value = state.apartmentTypes.deepCloneApartmentTypeList()
+      apartmentTypes.value = state.apartmentTypes.deepCloneList(Array<ApartmentType>::class.java)
 
 
       Log.d("Binh", "Update apartment type")

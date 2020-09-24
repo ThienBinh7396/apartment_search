@@ -27,6 +27,7 @@
 
   <dimen name="font_sm">12sp</dimen>
   <dimen name="font_xs">11sp</dimen>
+  <dimen name="font_13">13sp</dimen>
   <dimen name="font_md">14sp</dimen>
   <dimen name="font_default">16sp</dimen>
   <dimen name="font_lg">18sp</dimen>
@@ -48,5 +49,8 @@
   <dimen name="dimen_input_number_container_bottom_sheet">112dp</dimen>
 
   <dimen name="dimen_fragment_adapter_detail_image_height">240dp</dimen>
+  <dimen name="dimen_56">56dp</dimen>
+  <dimen name="dimen_46">46dp</dimen>
+  <dimen name="dimen_21">21dp</dimen>
 
 </resources>

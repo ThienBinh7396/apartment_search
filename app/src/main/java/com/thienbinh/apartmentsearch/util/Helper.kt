@@ -1,7 +1,13 @@
 package com.thienbinh.apartmentsearch.util
 
-import android.graphics.Color
+import android.R
+import android.content.Context
+import android.content.res.Resources
+import android.graphics.*
+import android.os.Build
+import android.text.Html
 import android.util.Log
+import android.widget.TextView
 import com.thienbinh.apartmentsearch.model.enum.ETypeDateFormat
 import org.joda.time.DateTime
 import java.text.DecimalFormat
@@ -11,8 +17,19 @@ import kotlin.math.roundToInt
 
 class Helper {
   companion object {
-    fun Float.roundTo(n : Int) : Float {
+    fun Float.roundTo(n: Int): Float {
       return "%.${n}f".format(Locale.US, this).toFloat()
+    }
+
+    fun TextView.setTextWithHtml(html: String) {
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        this.text = Html.fromHtml(
+          html,
+          Html.FROM_HTML_MODE_COMPACT
+        )
+      } else {
+        this.text = Html.fromHtml(html)
+      }
     }
 
     @JvmStatic
@@ -75,6 +92,10 @@ class Helper {
       }
     }
 
+    fun <T> MutableList<T>.deepCloneList(clazz: Class<Array<T>>): MutableList<T> {
+      return gson.fromJson(gson.toJson(this), clazz).toMutableList()
+    }
+
     @JvmStatic
     fun <T> checkListAreTheSame(
       listOne: MutableList<T>,
@@ -99,5 +120,6 @@ class Helper {
 
       return checkListTheSame
     }
+
   }
 }

@@ -27,9 +27,9 @@ data class Apartment(
   @ColumnInfo(name = "address")
   val address: String,
   @ColumnInfo(name = "longitude")
-  val longitude: Float,
+  val longitude: Double,
   @ColumnInfo(name = "latitude")
-  val latitude: Float,
+  val latitude: Double,
   @ColumnInfo(name = "maximum_adults")
   val maximum_adults: Int = 2,
   @ColumnInfo(name = "maximum_children")

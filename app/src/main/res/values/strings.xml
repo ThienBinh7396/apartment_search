@@ -21,6 +21,9 @@
   <string name="clear">Clear</string>
   <string name="home_type">Home type</string>
   <string name="apply_filters">Apply Filters</string>
+  <string name="amenities">Amenities</string>
+  <string name="nearby_landmarks">Nearby landmarks</string>
+  <string name="location">Location</string>
 
   <string-array name="custom_weekdays">
     <item>Su</item>

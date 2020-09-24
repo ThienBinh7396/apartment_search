@@ -1,5 +1,6 @@
 package com.thienbinh.apartmentsearch.binding
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Build
@@ -31,9 +32,7 @@ import com.stfalcon.pricerangebar.RangeBarWithChart
 import com.stfalcon.pricerangebar.model.BarEntry
 import com.thienbinh.apartmentsearch.GlideApp
 import com.thienbinh.apartmentsearch.R
-import com.thienbinh.apartmentsearch.adapter.recycleView.SortTypeAdapter
-import com.thienbinh.apartmentsearch.adapter.recycleView.ApartmentAdapter
-import com.thienbinh.apartmentsearch.adapter.recycleView.ApartmentTypeAdapter
+import com.thienbinh.apartmentsearch.adapter.recycleView.*
 import com.thienbinh.apartmentsearch.db.entities.Apartment
 import com.thienbinh.apartmentsearch.db.entities.ApartmentType
 import com.thienbinh.apartmentsearch.model.customInterface.IApartmentAdapterEventListener
@@ -41,6 +40,7 @@ import com.thienbinh.apartmentsearch.store
 import com.thienbinh.apartmentsearch.store.action.ApartmentAction
 import com.thienbinh.apartmentsearch.ui.activity.MainActivity
 import com.thienbinh.apartmentsearch.ui.customView.WidgetInputNumber
+import com.thienbinh.apartmentsearch.util.Helper.Companion.setTextWithHtml
 import com.thienbinh.apartmentsearch.util.RecyclerViewTouchListener
 import com.thienbinh.apartmentsearch.util.SCALE_DP_PX
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
@@ -83,7 +83,7 @@ class DataBindingHelper {
         GlideApp.with(imageView.context)
           .load(src)
           .centerCrop()
-          .listener(object : RequestListener<Drawable>{
+          .listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(
               e: GlideException?,
               model: Any?,
@@ -104,7 +104,7 @@ class DataBindingHelper {
             ): Boolean {
               Log.d("Binh", "Drawable: $resource")
 
-              if (mapUrlWithBitmap[src.toString()] == null && resource != null){
+              if (mapUrlWithBitmap[src.toString()] == null && resource != null) {
                 mapUrlWithBitmap[src.toString()] = resource
               }
 
@@ -261,10 +261,12 @@ class DataBindingHelper {
 
           Log.d("Binh", "Transition: $transitionName")
 
-          rcv.findNavController().navigate(R.id.action_homeFragment_to_apartmentDetailFragment , bundleOf(
-            "apartment" to apartment,
-            "transitionName" to transitionName
-          ), null , extras)
+          rcv.findNavController().navigate(
+            R.id.action_homeFragment_to_apartmentDetailFragment, bundleOf(
+              "apartment" to apartment,
+              "transitionName" to transitionName
+            ), null, extras
+          )
         }
       })
 
@@ -310,6 +312,32 @@ class DataBindingHelper {
       }
     }
 
+    @BindingAdapter("app:bindApartmentAmenityList")
+    @JvmStatic
+    fun bindApartmentAmenityList(rcv: RecyclerView, someThing: Any?) {
+      if (rcv.adapter == null) {
+
+        val adapter = ApartmentAmenityAdapter()
+
+        rcv.adapter = adapter
+
+        rcv.layoutManager = GridLayoutManager(rcv.context, 1, GridLayoutManager.HORIZONTAL, false)
+
+        adapter.updateList(store.state.apartmentState.apartmentAmenities)
+      }
+    }
+
+    @BindingAdapter("app:bindListLandmark")
+    @JvmStatic
+    fun bindListLandmark(rcv: RecyclerView, someThing: Any?) {
+      if (rcv.adapter == null) {
+
+        rcv.adapter = LandmarkAdapter()
+
+        rcv.layoutManager = GridLayoutManager(rcv.context, 1, GridLayoutManager.VERTICAL, false)
+      }
+    }
+
     @BindingAdapter("app:bindApartmentStyle")
     @JvmStatic
     fun bindApartmentStyle(rcv: RecyclerView, list: MutableList<ApartmentType>?) {
@@ -351,17 +379,29 @@ class DataBindingHelper {
       }
     }
 
+    @BindingAdapter("app:bindTextReviews")
+    @JvmStatic
+    fun bindTextReviews(tv: TextView, num: Int? = 0) {
+      tv.setTextWithHtml("<b>$num</b> Reviews")
+    }
+
+    @BindingAdapter("app:bindTextAvgRating")
+    @JvmStatic
+    fun bindTextAvgRating(tv: TextView, rate: Float? = 0f) {
+      tv.setTextWithHtml("<b>$rate</b> Avg. Rating")
+    }
+
     @BindingAdapter("app:bindDayResult")
     @JvmStatic
     fun bindDayResult(tv: TextView, num: Int? = null) {
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        tv.text = Html.fromHtml(
-          "<font color='#626b80'><b>$num night</b></font> stay",
-          Html.FROM_HTML_MODE_COMPACT
-        )
-      } else {
-        tv.text = Html.fromHtml("<font color='#626b80'><b>$num night</b></font> stay")
-      }
+      tv.setTextWithHtml("<font color='#626b80'><b>$num night</b></font> stay")
+    }
+
+    @SuppressLint("SetTextI18n")
+    @BindingAdapter("app:bindTextDistance")
+    @JvmStatic
+    fun bindTextDistance(tv: TextView, distance: Float) {
+      tv.text = "$distance mi"
     }
 
     @BindingAdapter(

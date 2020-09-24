@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <data>
+
+    <variable
+      name="landMark"
+      type="com.thienbinh.apartmentsearch.model.LandMarkModel" />
+  </data>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/dimen_10">
+
+    <ImageView
+      android:layout_width="@dimen/dimen_21"
+      android:layout_height="@dimen/dimen_16"
+      android:layout_gravity="center"
+      android:scaleType="centerCrop"
+      android:src="@drawable/ic_feather_check" />
+
+    <TextView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginStart="@dimen/dimen_12"
+      android:layout_marginEnd="@dimen/dimen_16"
+      android:layout_weight="1"
+      android:textSize="@dimen/font_13"
+      android:text="@{landMark.title}" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:textColor="@color/colorTextDisabled"
+      app:bindTextDistance="@{landMark.distance}" />
+  </LinearLayout>
+</layout>
