@@ -1,5 +1,6 @@
 package com.thienbinh.apartmentsearch.ui.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.os.Bundle
@@ -7,9 +8,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.transition.TransitionInflater
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -22,11 +25,15 @@ import com.thienbinh.apartmentsearch.R
 import com.thienbinh.apartmentsearch.binding.DataBindingHelper.Companion.mapUrlWithBitmap
 import com.thienbinh.apartmentsearch.databinding.FragmentApartmentDetailBinding
 import com.thienbinh.apartmentsearch.db.entities.Apartment
+import com.thienbinh.apartmentsearch.store
+import com.thienbinh.apartmentsearch.ui.activity.MainActivity
 import com.thienbinh.apartmentsearch.util.Helper
 import com.thienbinh.apartmentsearch.util.Helper.Companion.roundTo
 import com.thienbinh.apartmentsearch.util.MapRipple
 import com.thienbinh.apartmentsearch.util.SCALE_DP_PX
 import com.thienbinh.apartmentsearch.viewModel.ApartmentViewModel
+import org.joda.time.DateTime
+import org.joda.time.Days
 import java.lang.Math.abs
 
 
@@ -37,6 +44,8 @@ class ApartmentDetailFragment : Fragment(), OnMapReadyCallback {
   private var mApartment: Apartment? = null
 
   private var transitionName: String = ""
+
+  private var titleTransitionName: String = ""
 
   private var contentTranslationY = 26 * SCALE_DP_PX
 
@@ -51,12 +60,13 @@ class ApartmentDetailFragment : Fragment(), OnMapReadyCallback {
       }
 
     sharedElementReturnTransition =
-      TransitionInflater.from(context).inflateTransition(android.R.transition.slide_right)
+      TransitionInflater.from(context).inflateTransition(android.R.transition.no_transition)
 
     getDateFromBundle()
 
   }
 
+  @SuppressLint("SetTextI18n")
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
@@ -96,11 +106,23 @@ class ApartmentDetailFragment : Fragment(), OnMapReadyCallback {
       mMapView.onResume()
 
       mMapView.getMapAsync(this@ApartmentDetailFragment)
+
+      tvPrice.text = "$${getCountDate() * mApartment!!.price.toInt()}"
     }
 
     setupBottomSheetBehavior()
 
     return mFragmentApartmentDetailBinding.root
+  }
+
+  private fun getCountDate(): Int {
+    store.state.apartmentState.apartmentFilterModel.apply {
+      if (startDate != null && endDate != null) {
+        return Days.daysBetween(DateTime(startDate), DateTime(endDate)).days + 1
+      }
+    }
+
+    return 0
   }
 
   private fun setupBottomSheetBehavior() {
@@ -135,6 +157,9 @@ class ApartmentDetailFragment : Fragment(), OnMapReadyCallback {
 
     arguments?.getString("transitionName")?.apply {
       transitionName = this
+    }
+    arguments?.getString("titleTransitionName")?.apply {
+      titleTransitionName = this
     }
   }
 
@@ -218,7 +243,13 @@ class ApartmentDetailFragment : Fragment(), OnMapReadyCallback {
 
   }
 
-  fun makeBitmapText(context: Context, title: String, address: String, width: Int, height: Int): Bitmap? {
+  fun makeBitmapText(
+    context: Context,
+    title: String,
+    address: String,
+    width: Int,
+    height: Int
+  ): Bitmap? {
     val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
 
     val canvas = Canvas(bitmap)
@@ -232,17 +263,12 @@ class ApartmentDetailFragment : Fragment(), OnMapReadyCallback {
   }
 
   private fun customStyleGoogleMap(googleMap: GoogleMap?) {
-    if (googleMap == null || firstInitialized) return
+    if (googleMap == null) return
 
-    val mapStyleOptions =
-      MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.google_map_sliver_theme)
-
-    googleMap.setMapStyle(mapStyleOptions)
+    googleMap.setMapStyle(MainActivity.mapSliverStyle)
 
     googleMap.uiSettings.isScrollGesturesEnabled = false
     googleMap.uiSettings.isScrollGesturesEnabledDuringRotateOrZoom = false
     googleMap.setMinZoomPreference(17f)
-
-    firstInitialized = true
   }
 }

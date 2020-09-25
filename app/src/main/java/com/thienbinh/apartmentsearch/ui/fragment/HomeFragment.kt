@@ -13,6 +13,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.doOnPreDraw
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.transition.ChangeBounds
@@ -56,6 +57,9 @@ class HomeFragment : Fragment(), IFragmentHomeViewModelEventListener {
 
       lifecycleOwner = viewLifecycleOwner
 
+      gotoMapView.setOnClickListener {
+        gotoMapView.findNavController().navigate(R.id.action_homeFragment_to_mapsApartmentFragment)
+      }
     }
 
     mChooseDateDialog = BottomSheetDialog(requireContext(), R.style.SheetDialog).apply {

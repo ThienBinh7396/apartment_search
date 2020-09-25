@@ -13,5 +13,5 @@ data class ApartmentAmenity(
   @ColumnInfo(name = "title")
   val title: String,
   @ColumnInfo(name = "icon")
-  val icon: Int
+  val icon: String
 ) : Serializable

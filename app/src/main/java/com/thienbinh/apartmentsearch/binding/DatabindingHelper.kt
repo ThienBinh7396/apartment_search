@@ -63,6 +63,23 @@ class DataBindingHelper {
       }
     }
 
+    val mapIconTitleWithResId = mutableMapOf<String, Int>(
+      "wifi" to R.drawable.ic_feather_wifi,
+      "coffee" to R.drawable.ic_feather_coffee,
+      "monitor" to R.drawable.ic_feather_monitor,
+      "speaker" to R.drawable.ic_feather_speaker,
+      "breakfast" to R.drawable.ic_feather_breakfast,
+      "fitness" to R.drawable.ic_feather_fitness,
+    )
+
+    @BindingAdapter("app:bindIconSrcFromString")
+    @JvmStatic
+    fun bindIconSrcFromString(imageView: ImageView, src: String = "") {
+      if (src.isNotEmpty()) {
+        mapIconTitleWithResId[src]?.let { imageView.setImageResource(it) }
+      }
+    }
+
     val mapUrlWithBitmap = mutableMapOf<String, Drawable>()
 
     @BindingAdapter("app:bindImageSrcWithCenterCrop")
@@ -252,7 +269,11 @@ class DataBindingHelper {
     @JvmStatic
     fun bindApartmentList(rcv: RecyclerView, list: MutableList<Apartment>?) {
       var adapter = rcv.adapter ?: ApartmentAdapter(object : IApartmentAdapterEventListener {
-        override fun onGotoDetailEventListener(apartment: Apartment, imageView: ImageView) {
+        override fun onGotoDetailEventListener(
+          apartment: Apartment,
+          imageView: ImageView,
+          textViewTitle: TextView
+        ) {
           val transitionName = imageView.transitionName
 
           val extras = FragmentNavigatorExtras(
@@ -264,7 +285,7 @@ class DataBindingHelper {
           rcv.findNavController().navigate(
             R.id.action_homeFragment_to_apartmentDetailFragment, bundleOf(
               "apartment" to apartment,
-              "transitionName" to transitionName
+              "transitionName" to transitionName,
             ), null, extras
           )
         }

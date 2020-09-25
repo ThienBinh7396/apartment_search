@@ -3,7 +3,8 @@
   <color name="colorPrimary">#626b80</color>
   <color name="colorAccent">#DA0303</color>
 
-  <color name="colorTextActive">#3165ec</color>
+  <color name="colorTextActive">#336AE7</color>
+  <color name="colorTextActiveDarken">#0d3ebd</color>
   <color name="colorTextActiveLighten">#6e93f1</color>
   <color name="colorTextActiveWidthAlpha">#A63165EC</color>
   <color name="colorText">#626b80</color>

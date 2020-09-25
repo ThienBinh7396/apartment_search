@@ -25,7 +25,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:tint="#9FA5B4"
-        app:bindImageSrc="@{amenity.icon}" />
+        app:bindIconSrcFromString="@{amenity.icon}" />
 
     </RelativeLayout>
 

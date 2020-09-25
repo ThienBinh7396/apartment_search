@@ -3,8 +3,13 @@
   xmlns:tools="http://schemas.android.com/tools"
   package="com.thienbinh.apartmentsearch">
 
-  <uses-permission android:name="android.permission.INTERNET" />
+  <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
   <application
@@ -21,8 +26,7 @@
 
     <meta-data
       android:name="com.google.android.geo.API_KEY"
-      android:value="AIzaSyBv3jzyd92JjV47lwvJLzQQeBHyXJdH_tc"/>
-
+      android:value="@string/google_maps_key" />
     <meta-data
       android:name="com.google.android.gms.version"
       android:value="@integer/google_play_services_version" />
@@ -36,7 +40,10 @@
     </activity>
     <activity
       android:name=".ui.activity.MainActivity"
-      android:launchMode="singleTop">
+      android:launchMode="singleTop"
+      android:exported="false"
+      android:clearTaskOnLaunch="true"
+      >
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
       </intent-filter>

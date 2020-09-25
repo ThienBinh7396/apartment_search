@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/main_graph"
   app:startDestination="@id/homeFragment">
 
@@ -12,6 +13,9 @@
     <action
       android:id="@+id/action_homeFragment_to_apartmentDetailFragment"
       app:destination="@id/apartmentDetailFragment" />
+    <action
+      android:id="@+id/action_homeFragment_to_mapsApartmentFragment"
+      app:destination="@id/mapsApartmentFragment" />
   </fragment>
   <fragment
     android:id="@+id/apartmentDetailFragment"
@@ -26,8 +30,33 @@
       android:name="transitionName"
       app:argType="string"
       app:nullable="true" />
+    <argument
+      android:name="titleTransitionName"
+      app:argType="string"
+      app:nullable="true" />
     <action
       android:id="@+id/action_apartmentDetailFragment_to_homeFragment"
+      app:destination="@id/homeFragment" />
+    <action
+      android:id="@+id/action_apartmentDetailFragment_to_mapsApartmentFragment"
+      app:destination="@id/mapsApartmentFragment" />
+  </fragment>
+  <fragment
+    android:id="@+id/mapsApartmentFragment"
+    android:name="com.thienbinh.apartmentsearch.ui.fragment.MapsApartmentFragment"
+    android:label="fragment_maps_apartment"
+    tools:layout="@layout/fragment_maps_apartment" >
+
+    <argument
+      android:name="apartment"
+      app:argType="com.thienbinh.apartmentsearch.db.entities.Apartment"
+      app:nullable="true" />
+
+    <action
+      android:id="@+id/action_mapsApartmentFragment_to_apartmentDetailFragment"
+      app:destination="@id/apartmentDetailFragment" />
+    <action
+      android:id="@+id/action_mapsApartmentFragment_to_homeFragment"
       app:destination="@id/homeFragment" />
   </fragment>
 </navigation>

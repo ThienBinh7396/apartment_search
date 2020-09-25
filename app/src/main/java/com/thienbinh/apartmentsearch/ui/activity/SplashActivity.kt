@@ -140,12 +140,12 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
     )
 
     val apartmentAmenities = arrayOf(
-      ApartmentAmenity(null, "Wifi", R.drawable.ic_feather_wifi),
-      ApartmentAmenity(null, "Coffee maker", R.drawable.ic_feather_coffee),
-      ApartmentAmenity(null, "TV", R.drawable.ic_feather_monitor),
-      ApartmentAmenity(null, "Washer", R.drawable.ic_feather_speaker),
-      ApartmentAmenity(null, "Breakfast", R.drawable.ic_feather_breakfast),
-      ApartmentAmenity(null, "Fitness Center", R.drawable.ic_feather_fitness)
+      ApartmentAmenity(null, "Wifi", "wifi"),
+      ApartmentAmenity(null, "Coffee maker", "coffee"),
+      ApartmentAmenity(null, "TV", "monitor"),
+      ApartmentAmenity(null, "Washer", "speaker"),
+      ApartmentAmenity(null, "Breakfast", "breakfast"),
+      ApartmentAmenity(null, "Fitness Center", "fitness")
     )
 
     runBlocking {
@@ -169,7 +169,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
         null,
         title = "Silk Path Boutique Hanoi",
         thumbnail = "https://res.cloudinary.com/do1xjyyru/image/upload/v1600226971/apartment/167935228_wswvko.jpg",
-        price = 1924.50f,
+        price = 192.50f,
         address = "21 Hang Khay, Quận Hoàn Kiếm, Hà Nội",
         latitude = 21.026057,
         longitude = 105.852726,
@@ -190,7 +190,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
         null,
         title = " L' Heritage Hotel Hanoi",
         thumbnail = "https://res.cloudinary.com/do1xjyyru/image/upload/v1600230191/apartment/6048343_tmkmec.jpg",
-        price = 1224f,
+        price = 224f,
         address = "39-41 Hang Ga Street, Quận Hoàn Kiếm, Hà Nội",
         latitude = 21.036359,
         longitude = 105.847117,
@@ -212,7 +212,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
         null,
         title = "OYO 276 BH Hotel ",
         thumbnail = "https://res.cloudinary.com/do1xjyyru/image/upload/v1600230740/apartment/258105463_dahrcs.jpg",
-        price = 687.550f,
+        price = 68.550f,
         address = "No. 6, Lane 75, Cau Dat Street, Chuong Duong Do ward, Hanoi, Quận Hoàn Kiếm, Hà Nội",
         latitude = 21.026781,
         longitude = 105.861361,
@@ -229,7 +229,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
         null,
         title = "Comfy and Cozy HomeSTAY nearby Hanoi Opera House",
         thumbnail = "https://res.cloudinary.com/do1xjyyru/image/upload/v1600230952/apartment/170146739_srmyox.jpg",
-        price = 387.550f,
+        price = 87.550f,
         address = "969 Hồng Hà, Quận Hoàn Kiếm, Hà Nội",
         latitude = 21.023096,
         longitude = 105.861189,
@@ -247,7 +247,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
         null,
         title = "HOÀNG GIA MOTEL",
         thumbnail = "https://res.cloudinary.com/do1xjyyru/image/upload/v1600236322/apartment/169269844_cpds2r.jpg",
-        price = 380.550f,
+        price = 38.550f,
         address = "40 Nhân Mỹ, Mỹ Đình 2, Từ Liêm, Hà Nội",
         latitude = 21.023572,
         longitude = 105.770866,
@@ -263,7 +263,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
         null,
         title = "Sofitel Legend Metropole Hanoi",
         thumbnail = "https://res.cloudinary.com/do1xjyyru/image/upload/v1600236475/apartment/251755190_iks5zi.jpg",
-        price = 787.550f,
+        price = 78.550f,
         address = "15 Ngo Quyen Street, Quận Hoàn Kiếm, Hà Nội, Việt Nam",
         latitude = 21.025810,
         longitude = 105.856887,
@@ -303,7 +303,7 @@ class SplashActivity : AppCompatActivity(), LifecycleOwner {
         null,
         title = "The Poppy Villa & Hotel",
         thumbnail = "https://cf.bstatic.com/images/hotel/max1024x768/213/213496867.jpg",
-        price = 333.550f,
+        price = 33.550f,
         address = "12 Ngõ Bà Triệu, Lê Đại Hành, Hai Bà Trưng, Hà Nội",
         latitude = 21.012417,
         longitude = 105.849034,

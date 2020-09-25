@@ -30,7 +30,7 @@ class ApartmentAdapter(var eventListener: IApartmentAdapterEventListener) :
 
     init {
       binding.targetGotoDetail.setOnClickListener {
-        eventListener.onGotoDetailEventListener(mApartment, binding.imvThumbnail)
+        eventListener.onGotoDetailEventListener(mApartment, binding.imvThumbnail, binding.tvTitle)
       }
     }
 
@@ -45,6 +45,8 @@ class ApartmentAdapter(var eventListener: IApartmentAdapterEventListener) :
       mApartment = data
 
       binding.imvThumbnail.transitionName = "imageView-transition-${position}"
+
+      binding.tvTitle.transitionName = "textView-transition-${position}"
     }
   }
 

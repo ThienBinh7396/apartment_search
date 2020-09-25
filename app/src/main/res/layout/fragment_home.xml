@@ -30,7 +30,7 @@
           android:layout_width="@dimen/dimen_icon_button_width"
           android:layout_height="@dimen/dimen_icon_button_width"
           android:layout_gravity="center"
-          android:background="@color/colorTransparent"
+          android:background="?attr/selectableItemBackgroundBorderless"
           android:src="@drawable/ic_feather_arrow_left"
           android:tint="#9FA5B4" />
 
@@ -49,14 +49,15 @@
           android:layout_width="@dimen/dimen_icon_button_width"
           android:layout_height="@dimen/dimen_icon_button_width"
           android:layout_gravity="center"
-          android:background="@color/colorTransparent"
+          android:background="?attr/selectableItemBackgroundBorderless"
           android:src="@drawable/ic_feather_bookmark" />
 
         <ImageButton
+          android:id="@+id/gotoMapView"
           android:layout_width="@dimen/dimen_icon_button_width"
           android:layout_height="@dimen/dimen_icon_button_width"
           android:layout_gravity="center"
-          android:background="@color/colorTransparent"
+          android:background="?attr/selectableItemBackgroundBorderless"
           android:src="@drawable/ic_feather_map" />
       </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
@@ -123,8 +124,8 @@
           <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcvApartments"
             android:layout_width="match_parent"
-            android:overScrollMode="never"
             android:layout_height="wrap_content"
+            android:overScrollMode="never"
             app:bindApartmentList="@{fragmentHomeViewModel.apartments}" />
 
         </LinearLayout>
